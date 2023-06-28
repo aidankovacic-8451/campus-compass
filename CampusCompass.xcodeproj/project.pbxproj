@@ -45,6 +45,7 @@
 		DD448E882A4A8DF0005A9AF6 /* CampusCompassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCompassUITests.swift; sourceTree = "<group>"; };
 		DD448E8A2A4A8DF0005A9AF6 /* CampusCompassUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCompassUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DD5A1AC92A4CBE73002A3DD4 /* CampusCompassCICD.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CampusCompassCICD.xctestplan; sourceTree = "<group>"; };
+		DD5A1ACA2A4CC023002A3DD4 /* CampusCompass.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CampusCompass.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 		DD448E612A4A8DEF005A9AF6 = {
 			isa = PBXGroup;
 			children = (
+				DD5A1ACA2A4CC023002A3DD4 /* CampusCompass.xctestplan */,
 				DD5A1AC92A4CBE73002A3DD4 /* CampusCompassCICD.xctestplan */,
 				DD448E6C2A4A8DEF005A9AF6 /* CampusCompass */,
 				DD448E7D2A4A8DF0005A9AF6 /* CampusCompassTests */,

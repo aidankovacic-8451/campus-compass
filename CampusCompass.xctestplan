@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "AC5527C2-3C29-4141-ACE4-5240BF3F196A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CampusCompass.xcodeproj",
+      "identifier" : "DD448E692A4A8DEF005A9AF6",
+      "name" : "CampusCompass"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CampusCompass.xcodeproj",
+        "identifier" : "DD448E792A4A8DF0005A9AF6",
+        "name" : "CampusCompassTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CampusCompass.xcodeproj",
+        "identifier" : "DD448E832A4A8DF0005A9AF6",
+        "name" : "CampusCompassUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
