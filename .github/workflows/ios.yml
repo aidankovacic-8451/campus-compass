@@ -22,6 +22,6 @@ jobs:
         with:
           xcode-version: latest-stable
       - name: Run tests
-        run: xcodebuild clean test -project "CampusCompass.xcodeproj" -scheme "CampusCompass" -destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2"
+        run: xcodebuild clean test -project "CampusCompass.xcodeproj" -scheme "CampusCompass" -destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=16.4"
       - name: Build App
         run: xcodebuild -project "CampusCompass.xcodeproj" -scheme "CampusCompass" -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
