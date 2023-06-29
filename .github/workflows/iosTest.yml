@@ -21,7 +21,6 @@ jobs:
         with:
           model: 'iPhone 14 Pro'
           os: 'iOS'
-          os_version: '16.4'
       - name: Run tests
         run: xcodebuild clean test -project "CampusCompass.xcodeproj" -scheme "CampusCompass" -destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"
       - name: Build App
