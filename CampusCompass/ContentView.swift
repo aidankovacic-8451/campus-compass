@@ -9,33 +9,65 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        
-        //This ZStack allows the background color to stay behind the other elements of the welcome screen
-        ZStack{
+           
+        //This VStack aligns our homescreen UI including future functionality with buttons and logic
+        VStack{
             
-            //This sets the welcome screen background color
-            Color("AccentColor")
-                .ignoresSafeArea()
-            
-            //This VStack aligns all visible elements of welcome screen
-            VStack{
+            //This HStack aligns the top most part of the home screen
+            HStack {
+                
+                Image(systemName:"house.fill")
+                    .padding(.leading, 20)
+                    .foregroundColor(Color.accentColor)
                 Spacer()
                 
-                //This imports the png file of the logo and aligns it
-                Image("ccoutline")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(.leading, 100.0)
-                    
-                //This displays the welcome message to users
-                Text("Welcome to CampusCompass")
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
+                Text("CampusCompass")
                     .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
+                    .font(.system(size: 25))
+                    .foregroundColor(Color.accentColor)
                 Spacer()
                 
+                //TODO: This button functionality needs to be built out
+                
+                Button{
+                    print("this needs to go to the settings page")
+                } label: {
+                    Image(systemName:"questionmark")
+                        .padding(.trailing, 20)
+                        .bold()
+                }
             }
+            Divider()
+                .frame(height:3)
+                .overlay(Color.black)
+                .shadow(color: Color.black, radius: 3, x:0, y: 4)
+            
+            Spacer()
+                
+            //TODO: This button functionality needs to be built out
+            
+            Button{
+                print("This will take you to the search screen")
+            } label: {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.accentColor)
+                        .frame(width:200, height: 150)
+                    VStack{
+                        Image(systemName: "magnifyingglass")
+                            .resizable(resizingMode: .stretch)
+                            .foregroundColor(Color.white)
+                            .frame(width: 50.0, height: 50.0)
+                        Text("Search for your school")
+                            .foregroundColor(Color.white)
+                            .fontWeight(.bold)
+                    }
+                }
+            }
+            .padding(.top, 170.0)
+            
+            Spacer()
+            
         }
     }
 }
