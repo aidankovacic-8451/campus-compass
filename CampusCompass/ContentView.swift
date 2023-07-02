@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
+
+    @State private var enableAccessibilityRouting = true
+    
     var body: some View {
            
         //This VStack aligns our homescreen UI including future functionality with buttons and logic
@@ -58,15 +63,26 @@ struct ContentView: View {
                             .resizable(resizingMode: .stretch)
                             .foregroundColor(Color.white)
                             .frame(width: 50.0, height: 50.0)
-                        Text("Search for your school")
+                            .padding(.bottom, 15)
+                        Text("Find your school")
                             .foregroundColor(Color.white)
                             .fontWeight(.bold)
                     }
                 }
             }
-            .padding(.top, 170.0)
+            .padding(.top, 260.0)
             
             Spacer()
+            
+            Toggle("Accessibility Mode", isOn: $enableAccessibilityRouting)
+            .padding(.horizontal, 85)
+            .fontWeight(.bold)
+            .toggleStyle(SwitchToggleStyle(tint: .accentColor))
+            
+            if enableAccessibilityRouting {
+                Text("this will find accessbility routes")
+            }
+            
             
         }
     }
