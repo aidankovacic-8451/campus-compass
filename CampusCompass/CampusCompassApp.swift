@@ -11,7 +11,7 @@ import SwiftUI
 struct CampusCompassApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeScreen()
         }
     }
 }
