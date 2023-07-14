@@ -11,14 +11,13 @@ import SwiftUI
 
 struct HomeScreen: View {
     
-    
-    
-    
-    @State private var enableAccessibilityRouting = true
-    @State private var path = NavigationPath()
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var schoolSelection: SchoolSelection
-
+    @EnvironmentObject var buildingSelection: BuildingSelection
+    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
+    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
+    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    
     var body: some View {
         
         //This NavStack allows buttons on the homescreen to be functional
@@ -29,10 +28,9 @@ struct HomeScreen: View {
                 //This HStack aligns the top most part of the home screen
                 HStack {
                     
-                    Image(systemName:"house.fill")
-                        .padding(.leading, 20)
+                    Image(systemName: "house.fill")
                         .hidden()
-                        .foregroundColor(Color.accentColor)
+                    
                     Spacer()
                     
                     Text("CampusCompass")
@@ -74,20 +72,16 @@ struct HomeScreen: View {
                             }
                         }
                     }
-                .padding(.top, 260.0)
+                .position(x:200, y:470)
                 
                 Spacer()
                 
                 //This toggle will enable and disable accessibility mode
-                Toggle("Accessibility Mode", isOn: $enableAccessibilityRouting)
+                Toggle("Accessibility Mode", isOn: $accessibilitySettings.enableAccessibilityMode)
                     .padding(.horizontal, 85)
                     .padding (.bottom, 50)
                     .fontWeight(.bold)
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
-                
-                if enableAccessibilityRouting {
-                    Text("this will find accessbility routes")
-                }
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -99,16 +93,10 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
             .environmentObject(SchoolSelection())
-    }
-}
-
-struct storyboardview: UIViewControllerRepresentable{
-    func makeUIViewController(context content: Context) -> UIViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let controller = storyboard.instantiateViewController(identifier: "SchoolSearchScreen")
-        return controller
-    }
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+            .environmentObject(BuildingSelection())
+            .environmentObject(StartingLocationSelection())
+            .environmentObject(EndingLocationSelection())
+            .environmentObject(AccessibilitySetting())
     }
 }
 

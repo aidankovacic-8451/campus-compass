@@ -1,17 +1,17 @@
 //
-//  AvailableSchoolsList.swift
+//  AvailableBuildingsList.swift
 //  CampusCompass
 //
-//  Created by Nicholas Andrews on 7/13/23.
+//  Created by Nicholas Andrews on 7/14/23.
 //
 
 import SwiftUI
 
-struct AvailableSchoolsList: View {
-    var schools: [School] = [
-        .init(name: "University of Cincinnati"),
-        .init(name: "University of Dayton"),
-        .init(name: "Miami University")
+struct AvailableBuildingsList: View {
+    var buildings: [Building] = [
+        .init(name: "Swift Hall"),
+        .init(name: "Teachers/Dyer"),
+        .init(name: "Tangeman University Center")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var schoolSelection: SchoolSelection
@@ -23,25 +23,25 @@ struct AvailableSchoolsList: View {
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text("Schools")) {
-                    ForEach(schools, id: \.name) { school in
-                        NavigationLink(destination: BuildingSearchScreen()) {
-                            Text(school.name)
+                Section(header: Text("Buildings")) {
+                    ForEach(buildings, id: \.name) { building in
+                        NavigationLink(destination: LocationSelectionScreen()) {
+                            Text(building.name)
                         }
                         .onTapGesture {
-                            schoolSelection.selectedSchoolName = school.name
+                            buildingSelection.selectedBuildingName = building.name
                         }
                     }
                 }
             }
-            .navigationBarTitle("Available Schools")
+            .navigationBarTitle("Available Buildings")
         }
     }
 }
 
-struct AvailableSchoolsList_Previews: PreviewProvider {
+struct AvailableBuildingsList_Previews: PreviewProvider {
     static var previews: some View {
-        AvailableSchoolsList()
+        AvailableBuildingsList()
             .environmentObject(SchoolSelection())
             .environmentObject(BuildingSelection())
             .environmentObject(StartingLocationSelection())
@@ -50,6 +50,6 @@ struct AvailableSchoolsList_Previews: PreviewProvider {
     }
 }
 
-struct School: Hashable {
+struct Building: Hashable {
     let name: String
 }

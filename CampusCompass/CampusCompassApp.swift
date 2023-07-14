@@ -10,12 +10,19 @@ import SwiftUI
 @main
 struct CampusCompassApp: App {
     @StateObject var schoolSelection = SchoolSelection()
+    @StateObject var buildingSelection = BuildingSelection()
+    @StateObject var startingLocationSelection = StartingLocationSelection()
+    @StateObject var endingLocationSelection = EndingLocationSelection()
+    @StateObject private var accessibilitySettings = AccessibilitySetting()
     
     var body: some Scene {
         WindowGroup {
             HomeScreen()
                 .environmentObject(schoolSelection)
-            
+                .environmentObject(buildingSelection)
+                .environmentObject(startingLocationSelection)
+                .environmentObject(endingLocationSelection)
+                .environmentObject(accessibilitySettings)
         }
     }
 }
