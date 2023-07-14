@@ -13,6 +13,15 @@
 		8B9184892A59D7A7006FA267 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9184882A59D7A7006FA267 /* SettingsScreen.swift */; };
 		8B91848A2A59D7A7006FA267 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9184882A59D7A7006FA267 /* SettingsScreen.swift */; };
 		8B91848B2A59D7A7006FA267 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9184882A59D7A7006FA267 /* SettingsScreen.swift */; };
+		8B97577B2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577A2A60D7AA007D65E3 /* BuildingSearchScreen.swift */; };
+		8B97577C2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577A2A60D7AA007D65E3 /* BuildingSearchScreen.swift */; };
+		8B97577D2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577A2A60D7AA007D65E3 /* BuildingSearchScreen.swift */; };
+		8B97577F2A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */; };
+		8B9757802A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */; };
+		8B9757812A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */; };
+		8B9757832A60EAB7007D65E3 /* SchoolSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */; };
+		8B9757842A60EAB7007D65E3 /* SchoolSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */; };
+		8B9757852A60EAB7007D65E3 /* SchoolSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */; };
 		DD448E6E2A4A8DEF005A9AF6 /* CampusCompassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD448E6D2A4A8DEF005A9AF6 /* CampusCompassApp.swift */; };
 		DD448E702A4A8DEF005A9AF6 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD448E6F2A4A8DEF005A9AF6 /* HomeScreen.swift */; };
 		DD448E722A4A8DF0005A9AF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD448E712A4A8DF0005A9AF6 /* Assets.xcassets */; };
@@ -43,6 +52,9 @@
 		8B7443FF2A50CB4F00373A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B9184842A59D654006FA267 /* SchoolSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSearchScreen.swift; sourceTree = "<group>"; };
 		8B9184882A59D7A7006FA267 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		8B97577A2A60D7AA007D65E3 /* BuildingSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingSearchScreen.swift; sourceTree = "<group>"; };
+		8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSchoolsList.swift; sourceTree = "<group>"; };
+		8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelection.swift; sourceTree = "<group>"; };
 		DD448E6A2A4A8DEF005A9AF6 /* CampusCompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusCompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD448E6D2A4A8DEF005A9AF6 /* CampusCompassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCompassApp.swift; sourceTree = "<group>"; };
 		DD448E6F2A4A8DEF005A9AF6 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -107,7 +119,10 @@
 			children = (
 				8B7443FF2A50CB4F00373A9C /* Info.plist */,
 				DD448E6D2A4A8DEF005A9AF6 /* CampusCompassApp.swift */,
+				8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */,
 				DD448E6F2A4A8DEF005A9AF6 /* HomeScreen.swift */,
+				8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */,
+				8B97577A2A60D7AA007D65E3 /* BuildingSearchScreen.swift */,
 				8B9184882A59D7A7006FA267 /* SettingsScreen.swift */,
 				8B9184842A59D654006FA267 /* SchoolSearchScreen.swift */,
 				DD448E712A4A8DF0005A9AF6 /* Assets.xcassets */,
@@ -271,10 +286,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9757832A60EAB7007D65E3 /* SchoolSelection.swift in Sources */,
 				8B9184852A59D654006FA267 /* SchoolSearchScreen.swift in Sources */,
+				8B97577F2A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */,
 				DD448E702A4A8DEF005A9AF6 /* HomeScreen.swift in Sources */,
 				DD448E6E2A4A8DEF005A9AF6 /* CampusCompassApp.swift in Sources */,
 				8B9184892A59D7A7006FA267 /* SettingsScreen.swift in Sources */,
+				8B97577B2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,8 +300,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9757802A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */,
 				8B91848A2A59D7A7006FA267 /* SettingsScreen.swift in Sources */,
+				8B9757842A60EAB7007D65E3 /* SchoolSelection.swift in Sources */,
 				DD448E7F2A4A8DF0005A9AF6 /* CampusCompassTests.swift in Sources */,
+				8B97577C2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */,
 				8B9184862A59D654006FA267 /* SchoolSearchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,10 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9757852A60EAB7007D65E3 /* SchoolSelection.swift in Sources */,
 				DD448E8B2A4A8DF0005A9AF6 /* CampusCompassUITestsLaunchTests.swift in Sources */,
+				8B9757812A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */,
 				8B9184872A59D654006FA267 /* SchoolSearchScreen.swift in Sources */,
 				8B91848B2A59D7A7006FA267 /* SettingsScreen.swift in Sources */,
 				DD448E892A4A8DF0005A9AF6 /* CampusCompassUITests.swift in Sources */,
+				8B97577D2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

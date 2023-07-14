@@ -11,11 +11,17 @@ import SwiftUI
 
 struct HomeScreen: View {
     
+    
+    
+    
     @State private var enableAccessibilityRouting = true
     @State private var path = NavigationPath()
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var schoolSelection: SchoolSelection
+
     var body: some View {
         
-        
+        //This NavStack allows buttons on the homescreen to be functional
         NavigationStack{
         //This VStack aligns our homescreen UI with buttons and logic
             VStack{
@@ -35,6 +41,7 @@ struct HomeScreen: View {
                         .foregroundColor(Color.accentColor)
                     Spacer()
                     
+                    //This link enables us to go to the settings screen
                     NavigationLink(destination: SettingsScreen()){
                         Image(systemName:"questionmark")
                             .padding(.trailing, 20)
@@ -49,7 +56,8 @@ struct HomeScreen: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: SchoolSearchScreen()){
+                //This link sends the user to the list of available schools
+                NavigationLink(destination: AvailableSchoolsList()){
                     ZStack{
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.accentColor)
@@ -70,8 +78,10 @@ struct HomeScreen: View {
                 
                 Spacer()
                 
+                //This toggle will enable and disable accessibility mode
                 Toggle("Accessibility Mode", isOn: $enableAccessibilityRouting)
                     .padding(.horizontal, 85)
+                    .padding (.bottom, 50)
                     .fontWeight(.bold)
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                 
@@ -80,6 +90,7 @@ struct HomeScreen: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -87,6 +98,7 @@ struct HomeScreen: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+            .environmentObject(SchoolSelection())
     }
 }
 
@@ -99,3 +111,5 @@ struct storyboardview: UIViewControllerRepresentable{
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
     }
 }
+
+

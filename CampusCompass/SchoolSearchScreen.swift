@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SchoolSearchScreen: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var schoolSelection: SchoolSelection
+
     var body: some View {
         
         VStack{
@@ -41,6 +44,7 @@ struct SchoolSearchScreen: View {
             
             Spacer()
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
         
@@ -49,5 +53,6 @@ struct SchoolSearchScreen: View {
 struct SchoolSearchScreen_Previews: PreviewProvider {
     static var previews: some View {
         SchoolSearchScreen()
+            .environmentObject(SchoolSelection())
     }
 }

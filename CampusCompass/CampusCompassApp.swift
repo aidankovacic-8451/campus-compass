@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CampusCompassApp: App {
+    @StateObject var schoolSelection = SchoolSelection()
+    
     var body: some Scene {
         WindowGroup {
             HomeScreen()
+                .environmentObject(schoolSelection)
+            
         }
     }
 }
