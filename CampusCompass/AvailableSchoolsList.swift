@@ -24,13 +24,14 @@ struct AvailableSchoolsList: View {
         NavigationStack {
             List {
                 Section(header: Text("Schools")) {
-                    ForEach(schools, id: \.name) { school in
+                    ForEach(schools, id: \.self) { school in
                         NavigationLink(destination: BuildingSearchScreen()) {
                             Text(school.name)
                         }
-                        .onTapGesture {
-                            schoolSelection.selectedSchoolName = school.name
-                        }
+                        .simultaneousGesture(TapGesture()
+                            .onEnded(){
+                                schoolSelection.selectedSchoolName = school.name
+                            })
                     }
                 }
             }
@@ -38,6 +39,7 @@ struct AvailableSchoolsList: View {
         }
     }
 }
+
 
 struct AvailableSchoolsList_Previews: PreviewProvider {
     static var previews: some View {

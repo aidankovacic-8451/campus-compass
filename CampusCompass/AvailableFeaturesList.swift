@@ -28,9 +28,10 @@ struct AvailableFeaturesList: View {
                         NavigationLink(destination: LocationSelectionScreen()) {
                             Text(feature.name)
                         }
-                        .onTapGesture {
-                            startingLocationSelection.selectedStartingLocationName = feature.name
-                        }
+                        .simultaneousGesture(TapGesture()
+                            .onEnded(){
+                                startingLocationSelection.selectedStartingLocationName = feature.name
+                            })
                     }
                 }
             }

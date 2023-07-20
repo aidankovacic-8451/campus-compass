@@ -6,12 +6,31 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct AvailableBuildingsList: View {
-    var buildings: [Building] = [
+    
+    
+    
+    let universityofcincinnati: [Building] = [
+        .init(name: "Braunstein Hall"),
         .init(name: "Swift Hall"),
-        .init(name: "Teachers/Dyer"),
+        .init(name: "Teachers/Dyer Complex"),
         .init(name: "Tangeman University Center")
+    ]
+    
+    let universityofdayton: [Building] = [
+        .init(name: "A Cool Hall"),
+        .init(name: "A Big Building"),
+        .init(name: "Some Complex"),
+        .init(name: "Athletic Center")
+    ]
+    
+    let miamiuniversity: [Building] = [
+        .init(name: "Another Hall"),
+        .init(name: "Different Building 1"),
+        .init(name: "Different Building 2"),
+        .init(name: "Food Court")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var schoolSelection: SchoolSelection
@@ -19,8 +38,27 @@ struct AvailableBuildingsList: View {
     @EnvironmentObject var startingLocationSelection: StartingLocationSelection
     @EnvironmentObject var endingLocationSelection: EndingLocationSelection
     @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+
+    var buildings: [Building] {
+        switch schoolSelection.selectedSchoolName {
+        case "University of Cincinnati":
+            return universityofcincinnati
+        case "University of Dayton":
+            return universityofdayton
+        case "Miami University":
+            return miamiuniversity
+        default:
+            return []
+        }
+    }
     
+  
     var body: some View {
+        
+        VStack{
+            Text(schoolSelection.selectedSchoolName)
+        }
+        
         NavigationStack {
             List {
                 Section(header: Text("Buildings")) {
@@ -28,9 +66,10 @@ struct AvailableBuildingsList: View {
                         NavigationLink(destination: LocationSelectionScreen()) {
                             Text(building.name)
                         }
-                        .onTapGesture {
-                            buildingSelection.selectedBuildingName = building.name
-                        }
+                        .simultaneousGesture(TapGesture()
+                            .onEnded(){
+                                buildingSelection.selectedBuildingName = building.name
+                            })
                     }
                 }
             }
