@@ -29,19 +29,19 @@ struct RouteView: View {
                             .frame(height: 80)
                             
                         }
-                    }.padding(.leading, 10)
+                    }.padding(.top, 10)
                     
                 }
                 .padding(.horizontal)
                 .padding(.top, 25)
-                .frame(height: 500)
+                .frame(height: 400)
             }
-            
-            
             
             Button {
                 Task {
-                    await network.fetchRoute(fromLocation: "111", toLocation: "312", accessibility: true)
+                    await network.fetchRoute(fromLocation: startingLocationSelection.selectedStartingLocationName,
+                                             toLocation: endingLocationSelection.selectedEndingLocationName,
+                                             accessibility: accessibiltySetting.enableAccessibilityMode)
                 }
             } label: {
                 Text("Fetch Route")
@@ -79,6 +79,7 @@ struct DirectionView : View {
                 Text(direction)
                     .foregroundColor(.white)
                     .opacity(!isTapped ? 1 : 0.4)
+                    .padding(.horizontal, 22)
             }
             .onTapGesture {
                 isTapped = isTapped ? false : true

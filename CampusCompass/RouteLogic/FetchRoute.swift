@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class Network: ObservableObject {
-    @Published var route: Array<String> = ["a", "b", "c", "d", "e", "f", "g", "h"]
+    @Published var route: Array<String> = []
     
     func fetchRoute(fromLocation: String, toLocation: String, accessibility: Bool) async {
         let jsonEncoder = JSONEncoder()
