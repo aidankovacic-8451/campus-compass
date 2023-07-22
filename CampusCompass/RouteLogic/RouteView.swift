@@ -45,6 +45,14 @@ struct RouteView: View {
                                              accessibility: accessibiltySetting.enableAccessibilityMode)
                 }
             } label: {
+                /*HStack{
+                    Spacer()
+                    RoundedRectangle(cornerRadius: 10)
+                    .size(width: 270, height: 100)
+                    Text("GO")
+                        .foregroundColor(.black)
+                    Spacer()
+                }*/
                 Text("Fetch Route")
             }
         }

@@ -68,7 +68,7 @@ struct LocationSelectionScreen: View {
                     }
                     HStack{
                         Text(" \(schoolSelection.selectedSchoolName)")
-                            .font(.system(size: 33))
+                            .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
@@ -82,11 +82,54 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color.black)
                             .padding(.leading, 15)
+                            .padding(.bottom, 6)
+
                         Spacer()
                     }
                     HStack{
                         Text(" \(buildingSelection.selectedBuildingName)")
-                            .font(.system(size: 33))
+                            .font(.system(size: 30))
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.accentColor)
+                            .padding(.leading, 15)
+
+                        Spacer()
+                    }
+                    HStack{
+                        Text("Selected Starting Location:")
+                            .font(.system(size: 18))
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.black)
+                            .padding(.leading, 15)
+                            .padding(.bottom, 6)
+
+                        Spacer()
+                    }
+                    HStack{
+                        Text(" \(startingLocationSelection.selectedStartingLocationName)")
+                            .font(.system(size: 30))
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.accentColor)
+                            .padding(.leading, 15)
+                        
+                        Spacer()
+                    }
+                    HStack{
+                        Text("Selected Destination:")
+                            .font(.system(size: 18))
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.black)
+                            .padding(.leading, 15)
+                            .padding(.bottom, 6)
+                        Spacer()
+                    }
+                    HStack{
+                        Text(" \(endingLocationSelection.selectedEndingLocationName)")
+                            .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
@@ -95,20 +138,18 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                 }
-                
                 Spacer()
-                
-                VStack{
+                HStack{
                     //This link sends the user to the list of available schools
                     NavigationLink(destination: AvailableFeaturesList()){
                         Image("locationSelectButton")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 150.0, height: 150.0)
+                            .frame(width: 120.0, height: 120.0)
                             .padding(.bottom, 15)
                         
                     }
-                    .padding(.top, 60)
+                    //.padding(.top, 60)
                     
                     
                     //This link sends the user to the list of available schools
@@ -116,9 +157,20 @@ struct LocationSelectionScreen: View {
                         Image("destinationSelectButton")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 150.0, height: 150.0)
+                            .frame(width: 120.0, height: 120.0)
                             .padding(.bottom, 15)
+                            .padding(.leading, 30)
                         
+                    }
+                }
+                NavigationLink(destination: RouteView()){
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .frame(width: 190.0, height: 50)
+                            .foregroundColor(.accentColor)
+                        Text("GO")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
                     }
                 }
                 
