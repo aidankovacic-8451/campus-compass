@@ -14,6 +14,7 @@ class SchoolSelection: ObservableObject {
 
 class BuildingSelection: ObservableObject {
     @Published var selectedBuildingName: String = ""
+    @Published var selectedBuildingInternalName: String = ""
 }
 
 class StartingLocationSelection: ObservableObject {

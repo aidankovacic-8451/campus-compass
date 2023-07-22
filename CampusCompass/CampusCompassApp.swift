@@ -21,6 +21,7 @@ struct CampusCompassApp: App {
     let startingLocationSelection = StartingLocationSelection()
     let endingLocationSelection = EndingLocationSelection()
     let accessibilitySettings = AccessibilitySetting()
+    @StateObject var network = Network()
     
     var body: some Scene {
         WindowGroup {
@@ -30,6 +31,7 @@ struct CampusCompassApp: App {
                 .environmentObject(StartingLocationSelection())
                 .environmentObject(EndingLocationSelection())
                 .environmentObject(AccessibilitySetting())
+                .environmentObject(network)
         }
     }
 }

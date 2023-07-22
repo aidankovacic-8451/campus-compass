@@ -97,6 +97,7 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(StartingLocationSelection())
             .environmentObject(EndingLocationSelection())
             .environmentObject(AccessibilitySetting())
+            .environmentObject(Network())
     }
 }
 
