@@ -11,9 +11,9 @@ import SwiftUI
 class Network: ObservableObject {
     @Published var route: Array<String> = []
     
-    func fetchRoute(fromLocation: String, toLocation: String, accessibility: Bool) async {
+    func fetchRoute(building: String, fromLocation: String, toLocation: String, accessibility: Bool) async {
         let jsonEncoder = JSONEncoder()
-        guard let url = URL(string: "http://192.168.1.83:3000/route/test")
+        guard let url = URL(string: "http://192.168.1.83:3000/route/uc/\(building)")
         else {
             return
         }

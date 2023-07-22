@@ -39,7 +39,8 @@ struct RouteView: View {
             
             Button {
                 Task {
-                    await network.fetchRoute(fromLocation: startingLocationSelection.selectedStartingLocationName,
+                    await network.fetchRoute(building: buildingSelection.selectedBuildingInternalName,
+                                             fromLocation: startingLocationSelection.selectedStartingLocationName,
                                              toLocation: endingLocationSelection.selectedEndingLocationName,
                                              accessibility: accessibiltySetting.enableAccessibilityMode)
                 }

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct AvailableBuildingsList: View {
     var buildings: [Building] = [
-        .init(name: "Swift Hall"),
-        .init(name: "Teachers/Dyer"),
-        .init(name: "Tangeman University Center")
+        .init(name: "Swift Hall", internalName: "swift"),
+        .init(name: "Teachers/Dyer", internalName: "dyer"),
+        .init(name: "Tangeman University Center", internalName: "tuc")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var schoolSelection: SchoolSelection
@@ -30,6 +30,7 @@ struct AvailableBuildingsList: View {
                         }
                         .onTapGesture {
                             buildingSelection.selectedBuildingName = building.name
+                            buildingSelection.selectedBuildingInternalName = building.internalName
                         }
                     }
                 }
@@ -52,4 +53,5 @@ struct AvailableBuildingsList_Previews: PreviewProvider {
 
 struct Building: Hashable {
     let name: String
+    let internalName: String
 }

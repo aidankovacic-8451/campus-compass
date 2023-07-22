@@ -9,4 +9,5 @@ import SwiftUI
 
 class BuildingSelection: ObservableObject {
     @Published var selectedBuildingName: String = ""
+    @Published var selectedBuildingInternalName: String = ""
 }
