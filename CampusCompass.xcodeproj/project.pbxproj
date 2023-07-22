@@ -28,11 +28,8 @@
 		8B97577F2A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */; };
 		8B9757802A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */; };
 		8B9757812A60D83C007D65E3 /* AvailableSchoolsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */; };
-		8B9757832A60EAB7007D65E3 /* SchoolSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */; };
-		8B9757842A60EAB7007D65E3 /* SchoolSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */; };
-		8B9757852A60EAB7007D65E3 /* SchoolSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */; };
 		DD1217812A69B6490043D5FB /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1217802A69B6490043D5FB /* RouteView.swift */; };
-		DD1217852A69BBD00043D5FB /* FetchRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1217842A69BBD00043D5FB /* FetchRoute.swift */; };
+		DD12178B2A6B78960043D5FB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD12178A2A6B78960043D5FB /* Network.swift */; };
 		DD448E6E2A4A8DEF005A9AF6 /* CampusCompassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD448E6D2A4A8DEF005A9AF6 /* CampusCompassApp.swift */; };
 		DD448E702A4A8DEF005A9AF6 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD448E6F2A4A8DEF005A9AF6 /* HomeScreen.swift */; };
 		DD448E722A4A8DF0005A9AF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD448E712A4A8DF0005A9AF6 /* Assets.xcassets */; };
@@ -70,9 +67,8 @@
 		8B92F2F02A61E7AD003D0464 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8B97577A2A60D7AA007D65E3 /* BuildingSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingSearchScreen.swift; sourceTree = "<group>"; };
 		8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSchoolsList.swift; sourceTree = "<group>"; };
-		8B9757822A60EAB7007D65E3 /* SchoolSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelection.swift; sourceTree = "<group>"; };
 		DD1217802A69B6490043D5FB /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
-		DD1217842A69BBD00043D5FB /* FetchRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRoute.swift; sourceTree = "<group>"; };
+		DD12178A2A6B78960043D5FB /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		DD448E6A2A4A8DEF005A9AF6 /* CampusCompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusCompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD448E6D2A4A8DEF005A9AF6 /* CampusCompassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCompassApp.swift; sourceTree = "<group>"; };
 		DD448E6F2A4A8DEF005A9AF6 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -124,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				DD1217802A69B6490043D5FB /* RouteView.swift */,
-				DD1217842A69BBD00043D5FB /* FetchRoute.swift */,
+				DD12178A2A6B78960043D5FB /* Network.swift */,
 			);
 			path = RouteLogic;
 			sourceTree = "<group>";
@@ -331,6 +327,7 @@
 				DD448E702A4A8DEF005A9AF6 /* HomeScreen.swift in Sources */,
 				DD448E6E2A4A8DEF005A9AF6 /* CampusCompassApp.swift in Sources */,
 				8B92F2D22A61AD20003D0464 /* LocationSelectionScreen.swift in Sources */,
+				DD12178B2A6B78960043D5FB /* Network.swift in Sources */,
 				DD1217812A69B6490043D5FB /* RouteView.swift in Sources */,
 				8B92F2CE2A61AC36003D0464 /* AvailableBuildingsList.swift in Sources */,
 				8B9184892A59D7A7006FA267 /* SettingsScreen.swift in Sources */,

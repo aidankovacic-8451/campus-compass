@@ -21,7 +21,6 @@ struct CampusCompassApp: App {
     let startingLocationSelection = StartingLocationSelection()
     let endingLocationSelection = EndingLocationSelection()
     let accessibilitySettings = AccessibilitySetting()
-    @StateObject private var accessibilitySettings = AccessibilitySetting()
     @StateObject var network = Network()
     
     var body: some Scene {

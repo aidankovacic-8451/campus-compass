@@ -10,27 +10,25 @@ import Foundation
 
 struct AvailableBuildingsList: View {
     
-    
-    
     let universityofcincinnati: [Building] = [
-        .init(name: "Braunstein Hall"),
-        .init(name: "Swift Hall"),
-        .init(name: "Teachers/Dyer Complex"),
-        .init(name: "Tangeman University Center")
+        .init(name: "Braunstein Hall", internalName: "braunstein"),
+        .init(name: "Swift Hall", internalName: "swift"),
+        .init(name: "Teachers/Dyer Complex", internalName: "dyer"),
+        .init(name: "Tangeman University Center", internalName: "tuc")
     ]
     
     let universityofdayton: [Building] = [
-        .init(name: "A Cool Hall"),
-        .init(name: "A Big Building"),
-        .init(name: "Some Complex"),
-        .init(name: "Athletic Center")
+        .init(name: "A Cool Hall", internalName: "udcoolhall"),
+        .init(name: "A Big Building", internalName: "udbigbuilding"),
+        .init(name: "Some Complex", internalName: "somecomplex"),
+        .init(name: "Athletic Center", internalName: "udathletic")
     ]
     
     let miamiuniversity: [Building] = [
-        .init(name: "Another Hall"),
-        .init(name: "Different Building 1"),
-        .init(name: "Different Building 2"),
-        .init(name: "Food Court")
+        .init(name: "Another Hall", internalName: "muhall"),
+        .init(name: "Different Building 1", internalName: "mudb1"),
+        .init(name: "Different Building 2", internalName: "mudb2"),
+        .init(name: "Food Court", internalName: "mufoodcourt")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var schoolSelection: SchoolSelection
@@ -69,6 +67,7 @@ struct AvailableBuildingsList: View {
                         .simultaneousGesture(TapGesture()
                             .onEnded(){
                                 buildingSelection.selectedBuildingName = building.name
+                                buildingSelection.selectedBuildingInternalName = building.internalName
                             })
                     }
                 }
