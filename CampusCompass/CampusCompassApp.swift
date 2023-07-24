@@ -9,18 +9,18 @@ import SwiftUI
 
 @main
 struct CampusCompassApp: App {
-    /*
+    
     @StateObject var schoolSelection = SchoolSelection()
     @StateObject var buildingSelection = BuildingSelection()
     @StateObject var startingLocationSelection = StartingLocationSelection()
     @StateObject var endingLocationSelection = EndingLocationSelection()
-    @StateObject private var accessibilitySettings = AccessibilitySetting()*/
+    @StateObject private var accessibilitySettings = AccessibilitySetting()
     
-    let schoolSelection = SchoolSelection()
+    /*let schoolSelection = SchoolSelection()
     let buildingSelection = BuildingSelection()
     let startingLocationSelection = StartingLocationSelection()
     let endingLocationSelection = EndingLocationSelection()
-    let accessibilitySettings = AccessibilitySetting()
+    let accessibilitySettings = AccessibilitySetting()*/
     @StateObject var network = Network()
     
     var body: some Scene {

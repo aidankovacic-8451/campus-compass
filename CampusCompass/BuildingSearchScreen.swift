@@ -10,7 +10,7 @@ import SwiftUI
 struct BuildingSearchScreen: View {
     
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var schoolSelection: SchoolSelection
+    @StateObject var schoolSelection = SchoolSelection()
     @EnvironmentObject var buildingSelection: BuildingSelection
     @EnvironmentObject var startingLocationSelection: StartingLocationSelection
     @EnvironmentObject var endingLocationSelection: EndingLocationSelection
@@ -69,13 +69,13 @@ struct BuildingSearchScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(schoolSelection.selectedSchoolName)")
+                        Text("\(schoolSelection.selectedSchoolName)")
                             .font(.system(size: 33))
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
                             .padding(.leading, 15)
-                        Spacer()
+                        //Spacer()
                     }
                 }
                 
@@ -97,7 +97,7 @@ struct BuildingSearchScreen: View {
                         }
                     }
                 }
-                .position(x:200, y:350)
+                .position(x:200, y:450)
                 
                 Spacer()
                 

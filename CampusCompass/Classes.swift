@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import Combine
 
 class SchoolSelection: ObservableObject {
     @Published var selectedSchoolName: String = ""

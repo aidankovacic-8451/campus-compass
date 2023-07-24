@@ -14,7 +14,7 @@ struct AvailableSchoolsList: View {
         .init(name: "Miami University")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var schoolSelection: SchoolSelection
+    @StateObject var schoolSelection = SchoolSelection()
     @EnvironmentObject var buildingSelection: BuildingSelection
     @EnvironmentObject var startingLocationSelection: StartingLocationSelection
     @EnvironmentObject var endingLocationSelection: EndingLocationSelection
@@ -28,10 +28,9 @@ struct AvailableSchoolsList: View {
                         NavigationLink(destination: BuildingSearchScreen()) {
                             Text(school.name)
                         }
-                        .simultaneousGesture(TapGesture()
-                            .onEnded(){
+                        .onTapGesture{
                                 schoolSelection.selectedSchoolName = school.name
-                            })
+                            }
                     }
                 }
             }
@@ -49,6 +48,7 @@ struct AvailableSchoolsList_Previews: PreviewProvider {
             .environmentObject(StartingLocationSelection())
             .environmentObject(EndingLocationSelection())
             .environmentObject(AccessibilitySetting())
+
     }
 }
 

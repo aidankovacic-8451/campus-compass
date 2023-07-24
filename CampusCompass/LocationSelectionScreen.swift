@@ -64,6 +64,7 @@ struct LocationSelectionScreen: View {
                             .foregroundColor(Color.black)
                             .padding(.leading, 15)
                             .padding(.top, 10)
+                            .padding(.bottom, 6)
                         Spacer()
                     }
                     HStack{
@@ -138,7 +139,9 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                 }
+                
                 Spacer()
+                
                 HStack{
                     //This link sends the user to the list of available schools
                     NavigationLink(destination: AvailableFeaturesList()){
@@ -147,10 +150,7 @@ struct LocationSelectionScreen: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 120.0, height: 120.0)
                             .padding(.bottom, 15)
-                        
                     }
-                    //.padding(.top, 60)
-                    
                     
                     //This link sends the user to the list of available schools
                     NavigationLink(destination: AvailableFeaturesList()){
@@ -160,20 +160,21 @@ struct LocationSelectionScreen: View {
                             .frame(width: 120.0, height: 120.0)
                             .padding(.bottom, 15)
                             .padding(.leading, 30)
-                        
                     }
                 }
+                
+                Spacer()
+                
                 NavigationLink(destination: RouteView()){
                     ZStack{
                         RoundedRectangle(cornerRadius: 7)
-                            .frame(width: 190.0, height: 50)
+                            .frame(width: 190.0, height: 70)
                             .foregroundColor(.accentColor)
-                        Text("GO")
+                        Text("Get Your Route")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                     }
                 }
-                
                 
                 Spacer()
                 
