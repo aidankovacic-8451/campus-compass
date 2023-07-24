@@ -45,18 +45,20 @@ struct RouteView: View {
                                              accessibility: accessibiltySetting.enableAccessibilityMode)
                 }
             } label: {
-                /*HStack{
-                    Spacer()
+                ZStack{
+                    
                     RoundedRectangle(cornerRadius: 10)
-                    .size(width: 270, height: 100)
-                    Text("GO")
-                        .foregroundColor(.black)
-                    Spacer()
-                }*/
-                Text("Fetch Route")
+                    .frame(width: 270, height: 100)
+                    Text("Generate Route")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                }
             }
+            .padding(.bottom, 40)
+
+            Spacer()
         }
-        
     }
     
     func scaleValue(mainFrame: CGFloat, minY: CGFloat) -> CGFloat {

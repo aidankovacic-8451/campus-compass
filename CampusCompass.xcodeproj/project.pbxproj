@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1599762A6F2CCD00BB5C60 /* CompletionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1599752A6F2CCD00BB5C60 /* CompletionScreen.swift */; };
+		8B1599772A6F2CCD00BB5C60 /* CompletionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1599752A6F2CCD00BB5C60 /* CompletionScreen.swift */; };
+		8B1599782A6F2CCD00BB5C60 /* CompletionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1599752A6F2CCD00BB5C60 /* CompletionScreen.swift */; };
 		8B9184892A59D7A7006FA267 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9184882A59D7A7006FA267 /* SettingsScreen.swift */; };
 		8B91848A2A59D7A7006FA267 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9184882A59D7A7006FA267 /* SettingsScreen.swift */; };
 		8B91848B2A59D7A7006FA267 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9184882A59D7A7006FA267 /* SettingsScreen.swift */; };
@@ -57,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B1599752A6F2CCD00BB5C60 /* CompletionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompletionScreen.swift; path = CampusCompass/CompletionScreen.swift; sourceTree = SOURCE_ROOT; };
 		8B7443FF2A50CB4F00373A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B9184882A59D7A7006FA267 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		8B92F2CD2A61AC36003D0464 /* AvailableBuildingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableBuildingsList.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				8B92F2D52A61AF2B003D0464 /* Classes.swift */,
 				DD448E6F2A4A8DEF005A9AF6 /* HomeScreen.swift */,
 				8B97577E2A60D83C007D65E3 /* AvailableSchoolsList.swift */,
+				8B1599752A6F2CCD00BB5C60 /* CompletionScreen.swift */,
 				8B92F2E12A61C909003D0464 /* AvailableFeaturesList.swift */,
 				8B92F2CD2A61AC36003D0464 /* AvailableBuildingsList.swift */,
 				8B92F2D12A61AD20003D0464 /* LocationSelectionScreen.swift */,
@@ -333,6 +338,7 @@
 				8B9184892A59D7A7006FA267 /* SettingsScreen.swift in Sources */,
 				8B97577B2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */,
 				8B92F2E22A61C909003D0464 /* AvailableFeaturesList.swift in Sources */,
+				8B1599762A6F2CCD00BB5C60 /* CompletionScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +351,7 @@
 				8B91848A2A59D7A7006FA267 /* SettingsScreen.swift in Sources */,
 				DD448E7F2A4A8DF0005A9AF6 /* CampusCompassTests.swift in Sources */,
 				8B97577C2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */,
+				8B1599772A6F2CCD00BB5C60 /* CompletionScreen.swift in Sources */,
 				8B92F2CF2A61AC36003D0464 /* AvailableBuildingsList.swift in Sources */,
 				8B92F2E32A61C909003D0464 /* AvailableFeaturesList.swift in Sources */,
 				8B92F2D32A61AD20003D0464 /* LocationSelectionScreen.swift in Sources */,
@@ -362,6 +369,7 @@
 				8B92F2D42A61AD20003D0464 /* LocationSelectionScreen.swift in Sources */,
 				8B92F2D02A61AC36003D0464 /* AvailableBuildingsList.swift in Sources */,
 				DD448E892A4A8DF0005A9AF6 /* CampusCompassUITests.swift in Sources */,
+				8B1599782A6F2CCD00BB5C60 /* CompletionScreen.swift in Sources */,
 				8B97577D2A60D7AA007D65E3 /* BuildingSearchScreen.swift in Sources */,
 				8B92F2E42A61C909003D0464 /* AvailableFeaturesList.swift in Sources */,
 			);
