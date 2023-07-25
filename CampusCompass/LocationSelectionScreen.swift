@@ -141,9 +141,18 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                 }
+                // Jank that allows us to change env variables to the State of this
                 .onAppear {
                     store.selectedBuildingName = buildingName
+                    store.selectedBuildingInternalName = "braunstein"
                 }
+                .onChange(of: fromLocation) { newValue in
+                    store.selectedStartingLocationName = newValue
+                }
+                .onChange(of: toLocation) { newValue in
+                    store.selectedEndingLocationName = newValue
+                }
+                
                 
                 Spacer()
                 

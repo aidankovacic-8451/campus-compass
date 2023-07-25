@@ -12,8 +12,8 @@ struct AvailableFeaturesList: View {
     @Binding var fromLocation: String
     @Binding var toLocation: String
     var features: [Feature] = [
-        .init(name: "What"),
-        .init(name: "Quadrangle Entrance"),
+        .init(name: "100"),
+        .init(name: "309"),
         .init(name: "First Floor Bathrooms")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
@@ -33,6 +33,7 @@ struct AvailableFeaturesList: View {
                             }
                             dismiss()
                         }
+                        .foregroundColor(.black)
                     }
                 }
             }
