@@ -11,6 +11,7 @@ struct LocationSelectionScreen: View {
     @State private var fromLocation: String = ""
     @State private var toLocation: String = ""
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var store: Store
     
     var body: some View {
@@ -58,7 +59,7 @@ struct LocationSelectionScreen: View {
                             .font(.system(size: 18))
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
                             .padding(.top, 10)
                             .padding(.bottom, 6)
@@ -78,7 +79,7 @@ struct LocationSelectionScreen: View {
                             .font(.system(size: 18))
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
                             .padding(.bottom, 6)
 
@@ -99,7 +100,7 @@ struct LocationSelectionScreen: View {
                             .font(.system(size: 18))
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
                             .padding(.bottom, 6)
 
@@ -120,7 +121,7 @@ struct LocationSelectionScreen: View {
                             .font(.system(size: 18))
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
                             .padding(.bottom, 6)
                         Spacer()

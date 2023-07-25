@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BuildingSearchScreen: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var store: Store
     
     var body: some View {
@@ -58,7 +59,7 @@ struct BuildingSearchScreen: View {
                             .font(.system(size: 18))
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
                             .padding(.top, 10)
                         Spacer()
