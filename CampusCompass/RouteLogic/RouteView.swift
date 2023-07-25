@@ -59,6 +59,7 @@ struct RouteView: View {
         }
     }
     
+    // Credits to https://www.youtube.com/watch?v=EBbhIbI2Hg8 for this animation solution
     func scaleValue(mainFrame: CGFloat, minY: CGFloat) -> CGFloat {
         let scale = (minY - 25) / mainFrame
         
