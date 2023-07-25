@@ -49,10 +49,10 @@ struct AvailableBuildingsList: View {
   
     var body: some View {
         
-        VStack{
-            Text(store.selectedSchoolName)
+        /*VStack{
+            Text("Buildings at \(store.selectedSchoolName)")
         }
-        
+        */
         NavigationStack {
             List {
                 Section(header: Text("Buildings")) {

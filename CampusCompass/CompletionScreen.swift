@@ -94,6 +94,7 @@ struct CompletionScreen: View {
                 
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

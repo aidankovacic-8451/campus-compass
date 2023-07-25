@@ -62,7 +62,6 @@ struct LocationSelectionScreen: View {
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
                             .padding(.top, 10)
-                            .padding(.bottom, 6)
                         Spacer()
                     }
                     HStack{
@@ -72,6 +71,8 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
                             .padding(.leading, 15)
+                            .padding(.bottom, 4)
+
                         Spacer()
                     }
                     HStack{
@@ -81,7 +82,6 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
-                            .padding(.bottom, 6)
 
                         Spacer()
                     }
@@ -92,6 +92,8 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
                             .padding(.leading, 15)
+                            .padding(.bottom, 4)
+
 
                         Spacer()
                     }
@@ -102,7 +104,6 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
-                            .padding(.bottom, 6)
 
                         Spacer()
                     }
@@ -113,7 +114,8 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
                             .padding(.leading, 15)
-                        
+                            .padding(.bottom, 4)
+
                         Spacer()
                     }
                     HStack{
@@ -123,7 +125,6 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             .padding(.leading, 15)
-                            .padding(.bottom, 6)
                         Spacer()
                     }
                     HStack{
@@ -133,6 +134,7 @@ struct LocationSelectionScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
                             .padding(.leading, 15)
+                            .padding(.bottom, 4)
                         
                         Spacer()
                     }
@@ -142,7 +144,7 @@ struct LocationSelectionScreen: View {
                 Spacer()
                 
                 HStack{
-                    //This link sends the user to the list of available schools
+                    //This link sends the user to the list of available features
                     NavigationLink(destination: AvailableFeaturesList(startingLocation: true, fromLocation: $fromLocation, toLocation: $toLocation)){
                         Image("locationSelectButton")
                             .resizable()
@@ -151,7 +153,7 @@ struct LocationSelectionScreen: View {
                             .padding(.bottom, 15)
                     }
                     
-                    //This link sends the user to the list of available schools
+                    //This link sends the user to the list of available features
                     NavigationLink(destination: AvailableFeaturesList(startingLocation: false, fromLocation: $fromLocation, toLocation: $toLocation)){
                         Image("destinationSelectButton")
                             .resizable()
