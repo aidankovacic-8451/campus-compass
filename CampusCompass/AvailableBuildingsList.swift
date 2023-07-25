@@ -11,10 +11,9 @@ import Foundation
 struct AvailableBuildingsList: View {
     
     let universityofcincinnati: [Building] = [
-        .init(name: "Braunstein Hall", internalName: "braunstein"),
-        .init(name: "Swift Hall", internalName: "swift"),
-        .init(name: "Teachers/Dyer Complex", internalName: "dyer"),
-        .init(name: "Tangeman University Center", internalName: "tuc")
+        .init(name: "Braunstein Hall", internalName: "braunstein-uc"),
+        .init(name: "Swift Hall", internalName: "swift-uc"),
+        .init(name: "Tangeman University Center", internalName: "tuc-uc")
     ]
     
     let universityofdayton: [Building] = [

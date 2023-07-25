@@ -13,6 +13,7 @@ struct LocationSelectionScreen: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var store: Store
+    @EnvironmentObject var network: Network
     
     var body: some View {
         
@@ -137,7 +138,6 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                 }
-                // Jank that allows us to change env variables to the State of this
                 
                 Spacer()
                 
@@ -186,6 +186,13 @@ struct LocationSelectionScreen: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        // If we change one of the locations, uncache the route
+        .onChange(of: fromLocation) { _ in
+            network.route = []
+        }
+        .onChange(of: toLocation) { _ in
+            network.route = []
+        }
     }
 }
 

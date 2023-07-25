@@ -11,34 +11,35 @@ struct AvailableFeaturesList: View {
     var startingLocation: Bool
     @Binding var fromLocation: String
     @Binding var toLocation: String
-    var features: [Feature] = [
-        .init(name: "100"),
-        .init(name: "309"),
-        .init(name: "First Floor Bathrooms")
-    ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var store: Store
+    @EnvironmentObject var network: Network
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text("Features")) {
-                    ForEach(features, id: \.name) { feature in
-                        Button(feature.name) {
-                            if startingLocation {
-                                fromLocation = feature.name
-                            } else {
-                                toLocation = feature.name
+                    ForEach(network.features, id: \.self) { feature in
+                        if !(feature.contains("stair") || feature.contains("elevator")) {
+                            Button(feature) {
+                                if startingLocation {
+                                    fromLocation = feature
+                                } else {
+                                    toLocation = feature
+                                }
+                                dismiss()
                             }
-                            dismiss()
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                         }
-                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     }
                 }
             }
             .navigationBarTitle("Available Features")
+        }
+        .onAppear {
+            network.fetchFeatures(building: store.selectedBuildingInternalName)
         }
     }
 }
