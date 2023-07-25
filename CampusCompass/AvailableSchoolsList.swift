@@ -9,9 +9,9 @@ import SwiftUI
 
 struct AvailableSchoolsList: View {
     var schools: [School] = [
-        .init(name: "University of Cincinnati"),
-        .init(name: "University of Dayton"),
-        .init(name: "Miami University")
+        .init(name: "University of Cincinnati", internalName: "uc"),
+        .init(name: "University of Dayton", internalName: "ud"),
+        .init(name: "Miami University", internalName: "miamiohio")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var store: Store
@@ -22,7 +22,11 @@ struct AvailableSchoolsList: View {
                 Section(header: Text("Schools")) {
                     ForEach(schools, id: \.self) { school in
                         NavigationLink {
-                            BuildingSearchScreen(selectedSchoolName: school.name, selectedSchoolInternalName: school.name)
+                            BuildingSearchScreen()
+                                .onAppear {
+                                    store.selectedSchoolName = school.name
+                                    store.selectedSchoolInternalName = school.internalName
+                                }
                         } label: {
                             Text(school.name)
                         }
@@ -46,4 +50,5 @@ struct AvailableSchoolsList_Previews: PreviewProvider {
 
 struct School: Hashable {
     let name: String
+    let internalName: String
 }

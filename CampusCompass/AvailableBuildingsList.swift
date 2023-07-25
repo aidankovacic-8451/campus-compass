@@ -58,7 +58,11 @@ struct AvailableBuildingsList: View {
                 Section(header: Text("Buildings")) {
                     ForEach(buildings, id: \.name) { building in
                         NavigationLink {
-                            LocationSelectionScreen(buildingName: building.name)
+                            LocationSelectionScreen()
+                                .onAppear {
+                                    store.selectedBuildingName = building.name
+                                    store.selectedBuildingInternalName = building.internalName
+                                }
                         } label: {
                             Text(building.name)
                         }

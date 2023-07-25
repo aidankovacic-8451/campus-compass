@@ -8,15 +8,10 @@
 import SwiftUI
 
 struct LocationSelectionScreen: View {
-    private var buildingName: String
     @State private var fromLocation: String = ""
     @State private var toLocation: String = ""
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var store: Store
-    
-    init(buildingName: String) {
-        self.buildingName = buildingName
-    }
     
     var body: some View {
         
@@ -142,10 +137,7 @@ struct LocationSelectionScreen: View {
                     }
                 }
                 // Jank that allows us to change env variables to the State of this
-                .onAppear {
-                    store.selectedBuildingName = buildingName
-                    store.selectedBuildingInternalName = "braunstein"
-                }
+                
                 .onChange(of: fromLocation) { newValue in
                     store.selectedStartingLocationName = newValue
                 }
@@ -206,7 +198,7 @@ struct LocationSelectionScreen: View {
 
 struct LocationSelectionScreen_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSelectionScreen(buildingName: "UC")
+        LocationSelectionScreen()
             .environmentObject(Store())
     }
 }

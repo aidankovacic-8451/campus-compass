@@ -12,9 +12,13 @@ import Combine
 class Store: ObservableObject {
     @Published var selectedSchoolName: String = ""
     @Published var selectedSchoolInternalName: String = ""
+    
     @Published var selectedBuildingName: String = ""
     @Published var selectedBuildingInternalName: String = ""
+    
     @Published var selectedStartingLocationName: String = ""
     @Published var selectedEndingLocationName: String = ""
+    
     @Published var enableAccessibilityMode = false
 }
+

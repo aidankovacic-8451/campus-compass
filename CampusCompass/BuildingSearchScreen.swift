@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct BuildingSearchScreen: View {
-    var selectedSchoolName: String
-    var selectedSchoolInternalName: String
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var store: Store
     
@@ -75,10 +73,6 @@ struct BuildingSearchScreen: View {
                         //Spacer()
                     }
                 }
-                .onAppear(perform: {
-                    store.selectedSchoolName = self.selectedSchoolName
-                    store.selectedSchoolInternalName = self.selectedSchoolInternalName
-                })
                 
                 //This link sends the user to the list of available schools
                 NavigationLink(destination: AvailableBuildingsList()){
@@ -116,7 +110,7 @@ struct BuildingSearchScreen: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingSearchScreen(selectedSchoolName: "UC", selectedSchoolInternalName: "UC")
+        BuildingSearchScreen()
             .environmentObject(Store())
     }
 }
