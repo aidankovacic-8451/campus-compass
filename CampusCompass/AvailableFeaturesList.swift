@@ -18,6 +18,7 @@ struct AvailableFeaturesList: View {
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var store: Store
     
     var body: some View {
@@ -33,7 +34,7 @@ struct AvailableFeaturesList: View {
                             }
                             dismiss()
                         }
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                     }
                 }
             }
