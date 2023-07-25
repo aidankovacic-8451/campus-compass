@@ -14,9 +14,12 @@ class Network: ObservableObject {
     @Published var buildings: Array<Building> = []
     @Published var schools: Array<School> = []
     
+    // IP Address of services to connect to
+    private let IP: String = "192.168.1.83"
+    
     func fetchRoute(building: String, fromLocation: String, toLocation: String, accessibility: Bool) async {
         let jsonEncoder = JSONEncoder()
-        guard let url = URL(string: "http://192.168.1.83:3000/route/uc/\(building)")
+        guard let url = URL(string: "http://\(IP):3000/route/uc/\(building)")
         else {
             return
         }
@@ -58,7 +61,7 @@ class Network: ObservableObject {
     }
     
     func fetchFeatures(building: String) {
-        guard let url = URL(string: "http://192.168.1.83:8000/features/\(building)")
+        guard let url = URL(string: "http://\(IP):8000/features/\(building)")
         else {
             return
         }
@@ -94,7 +97,7 @@ class Network: ObservableObject {
     }
     
     func fetchBuildings(campus: String) {
-        guard let url = URL(string: "http://192.168.1.83:8000/buildings/\(campus)")
+        guard let url = URL(string: "http://\(IP):8000/buildings/\(campus)")
         else {
             return
         }
@@ -130,7 +133,7 @@ class Network: ObservableObject {
     }
     
     func fetchCampuses() {
-        guard let url = URL(string: "http://192.168.1.83:8000/campus")
+        guard let url = URL(string: "http://\(IP):8000/campus")
         else {
             return
         }
