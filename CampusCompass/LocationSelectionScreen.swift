@@ -106,7 +106,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(store.selectedStartingLocationName)")
+                        Text(" \(self.fromLocation)")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -126,7 +126,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(store.selectedEndingLocationName)")
+                        Text(" \(self.toLocation)")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -137,14 +137,6 @@ struct LocationSelectionScreen: View {
                     }
                 }
                 // Jank that allows us to change env variables to the State of this
-                
-                .onChange(of: fromLocation) { newValue in
-                    store.selectedStartingLocationName = newValue
-                }
-                .onChange(of: toLocation) { newValue in
-                    store.selectedEndingLocationName = newValue
-                }
-                
                 
                 Spacer()
                 
@@ -171,7 +163,7 @@ struct LocationSelectionScreen: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: RouteView()){
+                NavigationLink(destination: RouteView(fromLocation: $fromLocation, toLocation: $toLocation)){
                     ZStack{
                         RoundedRectangle(cornerRadius: 7)
                             .frame(width: 190.0, height: 70)

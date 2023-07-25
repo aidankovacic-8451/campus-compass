@@ -26,6 +26,7 @@ struct AvailableSchoolsList: View {
                                 .onAppear {
                                     store.selectedSchoolName = school.name
                                     store.selectedSchoolInternalName = school.internalName
+                                    store.clearCampusAttributes()
                                 }
                         } label: {
                             Text(school.name)

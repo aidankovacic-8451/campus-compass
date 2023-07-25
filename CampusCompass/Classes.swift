@@ -16,9 +16,12 @@ class Store: ObservableObject {
     @Published var selectedBuildingName: String = ""
     @Published var selectedBuildingInternalName: String = ""
     
-    @Published var selectedStartingLocationName: String = ""
-    @Published var selectedEndingLocationName: String = ""
-    
     @Published var enableAccessibilityMode = false
+        
+    func clearCampusAttributes() {
+        selectedBuildingName = ""
+        selectedBuildingInternalName = ""
+    }
+    
 }
 

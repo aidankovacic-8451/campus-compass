@@ -10,6 +10,8 @@ import SwiftUI
 struct RouteView: View {
     @EnvironmentObject var network: Network
     @EnvironmentObject var store: Store
+    @Binding var fromLocation: String
+    @Binding var toLocation: String
     
     var body: some View {
         VStack(spacing: 0) {
@@ -36,8 +38,8 @@ struct RouteView: View {
             Button {
                 Task {
                     await network.fetchRoute(building: store.selectedBuildingInternalName,
-                                             fromLocation: store.selectedStartingLocationName,
-                                             toLocation: store.selectedEndingLocationName,
+                                             fromLocation: self.fromLocation,
+                                             toLocation: self.toLocation,
                                              accessibility: store.enableAccessibilityMode)
                 }
             } label: {
@@ -100,8 +102,10 @@ struct DirectionView : View {
 
 
 struct RouteView_Previews: PreviewProvider {
+    @State static var fromLocation: String = "101"
+    @State static var toLocation: String = "303"
     static var previews: some View {
-        RouteView()
+        RouteView(fromLocation: $fromLocation, toLocation: $toLocation)
             .environmentObject(Network())
             .environmentObject(Store())
     }

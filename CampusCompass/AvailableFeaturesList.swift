@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AvailableFeaturesList: View {
-    @State var startingLocation: Bool
+    var startingLocation: Bool
     @Binding var fromLocation: String
     @Binding var toLocation: String
     var features: [Feature] = [
