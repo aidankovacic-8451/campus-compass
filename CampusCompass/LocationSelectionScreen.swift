@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct LocationSelectionScreen: View {
-    
+    private var buildingName: String
+    @State private var fromLocation: String = ""
+    @State private var toLocation: String = ""
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var schoolSelection: SchoolSelection
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
-    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    @EnvironmentObject var store: Store
+    
+    init(buildingName: String) {
+        self.buildingName = buildingName
+    }
     
     var body: some View {
         
@@ -68,7 +70,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(schoolSelection.selectedSchoolName)")
+                        Text(" \(store.selectedSchoolName)")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -88,7 +90,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(buildingSelection.selectedBuildingName)")
+                        Text(" \(store.selectedBuildingName)")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -109,7 +111,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(startingLocationSelection.selectedStartingLocationName)")
+                        Text(" \(store.selectedStartingLocationName)")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -129,7 +131,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(endingLocationSelection.selectedEndingLocationName)")
+                        Text(" \(store.selectedEndingLocationName)")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -139,12 +141,15 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                 }
+                .onAppear {
+                    store.selectedBuildingName = buildingName
+                }
                 
                 Spacer()
                 
                 HStack{
                     //This link sends the user to the list of available schools
-                    NavigationLink(destination: AvailableFeaturesList()){
+                    NavigationLink(destination: AvailableFeaturesList(startingLocation: true, fromLocation: $fromLocation, toLocation: $toLocation)){
                         Image("locationSelectButton")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -153,7 +158,7 @@ struct LocationSelectionScreen: View {
                     }
                     
                     //This link sends the user to the list of available schools
-                    NavigationLink(destination: AvailableFeaturesList()){
+                    NavigationLink(destination: AvailableFeaturesList(startingLocation: false, fromLocation: $fromLocation, toLocation: $toLocation)){
                         Image("destinationSelectButton")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -179,7 +184,7 @@ struct LocationSelectionScreen: View {
                 Spacer()
                 
                 //This toggle will enable and disable accessibility mode
-                Toggle("Accessibility Mode", isOn: $accessibilitySettings.enableAccessibilityMode)
+                Toggle("Accessibility Mode", isOn: $store.enableAccessibilityMode)
                     .padding(.horizontal, 85)
                     //.padding (.bottom, 10)
                     .fontWeight(.bold)
@@ -192,11 +197,7 @@ struct LocationSelectionScreen: View {
 
 struct LocationSelectionScreen_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSelectionScreen()
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+        LocationSelectionScreen(buildingName: "UC")
+            .environmentObject(Store())
     }
 }

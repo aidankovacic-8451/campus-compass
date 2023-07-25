@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct BuildingSearchScreen: View {
-    
+    var selectedSchoolName: String
+    var selectedSchoolInternalName: String
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @StateObject var schoolSelection = SchoolSelection()
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
-    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    @EnvironmentObject var store: Store
     
     var body: some View {
         
@@ -69,7 +66,7 @@ struct BuildingSearchScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text("\(schoolSelection.selectedSchoolName)")
+                        Text("\(store.selectedSchoolName)")
                             .font(.system(size: 33))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -78,6 +75,10 @@ struct BuildingSearchScreen: View {
                         //Spacer()
                     }
                 }
+                .onAppear(perform: {
+                    store.selectedSchoolName = self.selectedSchoolName
+                    store.selectedSchoolInternalName = self.selectedSchoolInternalName
+                })
                 
                 //This link sends the user to the list of available schools
                 NavigationLink(destination: AvailableBuildingsList()){
@@ -102,7 +103,7 @@ struct BuildingSearchScreen: View {
                 Spacer()
                 
                 //This toggle will enable and disable accessibility mode
-                Toggle("Accessibility Mode", isOn: $accessibilitySettings.enableAccessibilityMode)
+                Toggle("Accessibility Mode", isOn: $store.enableAccessibilityMode)
                     .padding(.horizontal, 85)
                     .padding (.bottom, 50)
                     .fontWeight(.bold)
@@ -115,11 +116,7 @@ struct BuildingSearchScreen: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingSearchScreen()
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+        BuildingSearchScreen(selectedSchoolName: "UC", selectedSchoolInternalName: "UC")
+            .environmentObject(Store())
     }
 }

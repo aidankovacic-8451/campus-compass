@@ -12,11 +12,7 @@ import SwiftUI
 struct HomeScreen: View {
     
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var schoolSelection: SchoolSelection
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
-    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    @EnvironmentObject var store: Store
     
     var body: some View {
         
@@ -77,7 +73,7 @@ struct HomeScreen: View {
                 Spacer()
                 
                 //This toggle will enable and disable accessibility mode
-                Toggle("Accessibility Mode", isOn: $accessibilitySettings.enableAccessibilityMode)
+                Toggle("Accessibility Mode", isOn: $store.enableAccessibilityMode)
                     .padding(.horizontal, 85)
                     .padding (.bottom, 50)
                     .fontWeight(.bold)
@@ -92,11 +88,7 @@ struct HomeScreen: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+            .environmentObject(Store())
             .environmentObject(Network())
     }
 }

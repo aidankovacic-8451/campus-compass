@@ -14,23 +14,19 @@ struct AvailableSchoolsList: View {
         .init(name: "Miami University")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @StateObject var schoolSelection = SchoolSelection()
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
-    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    @EnvironmentObject var store: Store
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text("Schools")) {
                     ForEach(schools, id: \.self) { school in
-                        NavigationLink(destination: BuildingSearchScreen()) {
+                        NavigationLink {
+                            BuildingSearchScreen(selectedSchoolName: school.name, selectedSchoolInternalName: school.name)
+                        } label: {
                             Text(school.name)
                         }
-                        .onTapGesture{
-                                schoolSelection.selectedSchoolName = school.name
-                            }
+                        
                     }
                 }
             }
@@ -43,11 +39,7 @@ struct AvailableSchoolsList: View {
 struct AvailableSchoolsList_Previews: PreviewProvider {
     static var previews: some View {
         AvailableSchoolsList()
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+            .environmentObject(Store())
 
     }
 }

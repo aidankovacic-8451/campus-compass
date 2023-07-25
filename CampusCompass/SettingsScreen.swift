@@ -10,18 +10,10 @@ import SwiftUI
 struct SettingsScreen: View {
     
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var schoolSelection: SchoolSelection
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
-    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    @EnvironmentObject var store: Store
     @State private var Feedback = ""
     
-   
-    
-    var body: some View {
-        
-        
+   var body: some View {
         
         NavigationStack{
             VStack{
@@ -100,10 +92,6 @@ struct SettingsScreen: View {
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
         SettingsScreen()
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+            .environmentObject(Store())
     }
 }

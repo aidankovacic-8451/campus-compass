@@ -9,11 +9,7 @@ import SwiftUI
 
 struct RouteView: View {
     @EnvironmentObject var network: Network
-    @EnvironmentObject var accessibiltySetting: AccessibilitySetting
-    @EnvironmentObject var schoolSelection: SchoolSelection
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
+    @EnvironmentObject var store: Store
     
     var body: some View {
         VStack(spacing: 0) {
@@ -39,10 +35,10 @@ struct RouteView: View {
             
             Button {
                 Task {
-                    await network.fetchRoute(building: buildingSelection.selectedBuildingInternalName,
-                                             fromLocation: startingLocationSelection.selectedStartingLocationName,
-                                             toLocation: endingLocationSelection.selectedEndingLocationName,
-                                             accessibility: accessibiltySetting.enableAccessibilityMode)
+                    await network.fetchRoute(building: store.selectedBuildingInternalName,
+                                             fromLocation: store.selectedStartingLocationName,
+                                             toLocation: store.selectedEndingLocationName,
+                                             accessibility: store.enableAccessibilityMode)
                 }
             } label: {
                 ZStack{
@@ -107,10 +103,6 @@ struct RouteView_Previews: PreviewProvider {
     static var previews: some View {
         RouteView()
             .environmentObject(Network())
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+            .environmentObject(Store())
     }
 }

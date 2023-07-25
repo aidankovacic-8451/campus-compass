@@ -31,14 +31,10 @@ struct AvailableBuildingsList: View {
         .init(name: "Food Court", internalName: "mufoodcourt")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var schoolSelection: SchoolSelection
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
-    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    @EnvironmentObject var store: Store
 
     var buildings: [Building] {
-        switch schoolSelection.selectedSchoolName {
+        switch store.selectedSchoolName {
         case "University of Cincinnati":
             return universityofcincinnati
         case "University of Dayton":
@@ -54,21 +50,19 @@ struct AvailableBuildingsList: View {
     var body: some View {
         
         VStack{
-            Text(schoolSelection.selectedSchoolName)
+            Text(store.selectedSchoolName)
         }
         
         NavigationStack {
             List {
                 Section(header: Text("Buildings")) {
                     ForEach(buildings, id: \.name) { building in
-                        NavigationLink(destination: LocationSelectionScreen()) {
+                        NavigationLink {
+                            LocationSelectionScreen(buildingName: building.name)
+                        } label: {
                             Text(building.name)
                         }
-                        .simultaneousGesture(TapGesture()
-                            .onEnded(){
-                                buildingSelection.selectedBuildingName = building.name
-                                buildingSelection.selectedBuildingInternalName = building.internalName
-                            })
+                        
                     }
                 }
             }
@@ -80,11 +74,7 @@ struct AvailableBuildingsList: View {
 struct AvailableBuildingsList_Previews: PreviewProvider {
     static var previews: some View {
         AvailableBuildingsList()
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+            .environmentObject(Store())
     }
 }
 

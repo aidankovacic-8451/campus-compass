@@ -9,23 +9,12 @@ import SwiftUI
 import Foundation
 import Combine
 
-class SchoolSelection: ObservableObject {
+class Store: ObservableObject {
     @Published var selectedSchoolName: String = ""
-}
-
-class BuildingSelection: ObservableObject {
+    @Published var selectedSchoolInternalName: String = ""
     @Published var selectedBuildingName: String = ""
     @Published var selectedBuildingInternalName: String = ""
-}
-
-class StartingLocationSelection: ObservableObject {
     @Published var selectedStartingLocationName: String = ""
-}
-
-class EndingLocationSelection: ObservableObject {
     @Published var selectedEndingLocationName: String = ""
-}
-
-class AccessibilitySetting: ObservableObject {
     @Published var enableAccessibilityMode = false
 }

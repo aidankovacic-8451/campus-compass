@@ -8,30 +8,31 @@
 import SwiftUI
 
 struct AvailableFeaturesList: View {
+    @State var startingLocation: Bool
+    @Binding var fromLocation: String
+    @Binding var toLocation: String
     var features: [Feature] = [
-        .init(name: "Room 620"),
+        .init(name: "What"),
         .init(name: "Quadrangle Entrance"),
         .init(name: "First Floor Bathrooms")
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var schoolSelection: SchoolSelection
-    @EnvironmentObject var buildingSelection: BuildingSelection
-    @EnvironmentObject var startingLocationSelection: StartingLocationSelection
-    @EnvironmentObject var endingLocationSelection: EndingLocationSelection
-    @EnvironmentObject var accessibilitySettings: AccessibilitySetting
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var store: Store
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text("Features")) {
                     ForEach(features, id: \.name) { feature in
-                        NavigationLink(destination: LocationSelectionScreen()) {
-                            Text(feature.name)
+                        Button(feature.name) {
+                            if startingLocation {
+                                fromLocation = feature.name
+                            } else {
+                                toLocation = feature.name
+                            }
+                            dismiss()
                         }
-                        .simultaneousGesture(TapGesture()
-                            .onEnded(){
-                                startingLocationSelection.selectedStartingLocationName = feature.name
-                            })
                     }
                 }
             }
@@ -41,13 +42,11 @@ struct AvailableFeaturesList: View {
 }
 
 struct AvailableFeaturesList_Previews: PreviewProvider {
+    @State static var fromLocation: String = "420"
+    @State static var toLocation: String = "1337"
     static var previews: some View {
-        AvailableFeaturesList()
-            .environmentObject(SchoolSelection())
-            .environmentObject(BuildingSelection())
-            .environmentObject(StartingLocationSelection())
-            .environmentObject(EndingLocationSelection())
-            .environmentObject(AccessibilitySetting())
+        AvailableFeaturesList(startingLocation: true, fromLocation: $fromLocation, toLocation: $toLocation)
+            .environmentObject(Store())
     }
 }
 
