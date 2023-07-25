@@ -15,6 +15,7 @@ struct AvailableSchoolsList: View {
     ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var store: Store
+    @EnvironmentObject var network: Network
     
     var body: some View {
         NavigationStack {
@@ -49,7 +50,3 @@ struct AvailableSchoolsList_Previews: PreviewProvider {
     }
 }
 
-struct School: Hashable {
-    let name: String
-    let internalName: String
-}
