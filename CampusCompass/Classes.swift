@@ -25,3 +25,12 @@ class Store: ObservableObject {
     
 }
 
+struct School: Hashable {
+    let name: String
+    let internalName: String
+}
+
+struct Building: Hashable {
+    let name: String
+    let internalName: String
+}

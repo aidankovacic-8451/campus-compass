@@ -10,10 +10,16 @@ import SwiftUI
 
 class Network: ObservableObject {
     @Published var route: Array<String> = []
+    @Published var features: Array<String> = []
+    @Published var buildings: Array<Building> = []
+    @Published var schools: Array<School> = []
+    
+    // IP Address of services to connect to
+    private let IP: String = "192.168.1.83"
     
     func fetchRoute(building: String, fromLocation: String, toLocation: String, accessibility: Bool) async {
         let jsonEncoder = JSONEncoder()
-        guard let url = URL(string: "http://192.168.182.128:3000/route/uc/\(building)")
+        guard let url = URL(string: "http://\(IP):3000/route/uc/\(building)")
         else {
             return
         }
@@ -42,7 +48,6 @@ class Network: ObservableObject {
                 guard let data = data else {
                     return
                 }
-                print(String(decoding: data, as: UTF8.self))
                 DispatchQueue.main.async {
                     let substringRoute = String(decoding: data, as: UTF8.self)
                     let substringArray = substringRoute.split(whereSeparator: \.isNewline)
@@ -54,11 +59,139 @@ class Network: ObservableObject {
             }
         }.resume()
     }
+    
+    func fetchFeatures(building: String) {
+        guard let url = URL(string: "http://\(IP):8000/features/\(building)")
+        else {
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else { return }
+            
+            if response.statusCode == 200 {
+                guard let data = data else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    do {
+                        let decodedFeatures = try JSONDecoder().decode([FeatureMessage].self, from: data)
+                        self.features = decodedFeatures.map {
+                            $0.name
+                        }
+                    } catch let error {
+                        print("Error decoding: ", error)
+                    }
+                }
+                
+            }
+        }.resume()
+    }
+    
+    func fetchBuildings(campus: String) {
+        guard let url = URL(string: "http://\(IP):8000/buildings/\(campus)")
+        else {
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else { return }
+            
+            if response.statusCode == 200 {
+                guard let data = data else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    do {
+                        let decodedFeatures = try JSONDecoder().decode([BuildingMessage].self, from: data)
+                        self.buildings = decodedFeatures.map {
+                            Building(name: $0.name, internalName: $0.internal_name)
+                        }
+                    } catch let error {
+                        print("Error decoding: ", error)
+                    }
+                }
+                
+            }
+        }.resume()
+    }
+    
+    func fetchCampuses() {
+        guard let url = URL(string: "http://\(IP):8000/campus")
+        else {
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else { return }
+            
+            if response.statusCode == 200 {
+                guard let data = data else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    do {
+                        let decodedFeatures = try JSONDecoder().decode([CampusMessage].self, from: data)
+                        self.schools = decodedFeatures.map {
+                            School(name: $0.name, internalName: $0.internal_name)
+                        }
+                    } catch let error {
+                        print("Error decoding: ", error)
+                    }
+                }
+                
+            }
+        }.resume()
+    }
 
     struct RouteMessage: Codable {
         let fromLocation: String
         let toLocation: String
         let accessibility: Bool
+    }
+    
+    struct FeatureMessage: Codable {
+        let type: String
+        let name: String
+        let building_id: Int
+        let id: Int
+    }
+    
+    struct BuildingMessage: Codable {
+        let id: Int
+        let campus_id: Int
+        let name: String
+        let internal_name: String
+    }
+    
+    struct CampusMessage: Codable {
+        let id: Int
+        let name: String
+        let internal_name: String
     }
 
 }
