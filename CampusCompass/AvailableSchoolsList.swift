@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct AvailableSchoolsList: View {
-    var schools: [School] = [
-        .init(name: "University of Cincinnati", internalName: "uc"),
-        .init(name: "University of Dayton", internalName: "ud"),
-        .init(name: "Miami University", internalName: "miamiohio")
-    ]
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var store: Store
     @EnvironmentObject var network: Network
@@ -21,7 +16,7 @@ struct AvailableSchoolsList: View {
         NavigationStack {
             List {
                 Section(header: Text("Schools")) {
-                    ForEach(schools, id: \.self) { school in
+                    ForEach(network.schools, id: \.internalName) { school in
                         NavigationLink {
                             BuildingSearchScreen()
                                 .onAppear {
@@ -37,6 +32,9 @@ struct AvailableSchoolsList: View {
                 }
             }
             .navigationBarTitle("Available Schools")
+            .onAppear {
+                network.fetchCampuses()
+            }
         }
     }
 }

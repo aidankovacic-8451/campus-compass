@@ -12,6 +12,7 @@ class Network: ObservableObject {
     @Published var route: Array<String> = []
     @Published var features: Array<String> = []
     @Published var buildings: Array<Building> = []
+    @Published var schools: Array<School> = []
     
     func fetchRoute(building: String, fromLocation: String, toLocation: String, accessibility: Bool) async {
         let jsonEncoder = JSONEncoder()
@@ -127,6 +128,42 @@ class Network: ObservableObject {
             }
         }.resume()
     }
+    
+    func fetchCampuses() {
+        guard let url = URL(string: "http://192.168.1.83:8000/campus")
+        else {
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else { return }
+            
+            if response.statusCode == 200 {
+                guard let data = data else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    do {
+                        let decodedFeatures = try JSONDecoder().decode([CampusMessage].self, from: data)
+                        self.schools = decodedFeatures.map {
+                            School(name: $0.name, internalName: $0.internal_name)
+                        }
+                    } catch let error {
+                        print("Error decoding: ", error)
+                    }
+                }
+                
+            }
+        }.resume()
+    }
 
     struct RouteMessage: Codable {
         let fromLocation: String
@@ -144,6 +181,12 @@ class Network: ObservableObject {
     struct BuildingMessage: Codable {
         let id: Int
         let campus_id: Int
+        let name: String
+        let internal_name: String
+    }
+    
+    struct CampusMessage: Codable {
+        let id: Int
         let name: String
         let internal_name: String
     }
