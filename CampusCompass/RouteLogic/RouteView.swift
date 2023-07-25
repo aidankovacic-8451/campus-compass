@@ -8,12 +8,44 @@
 import SwiftUI
 
 struct RouteView: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var network: Network
     @EnvironmentObject var store: Store
     @Binding var fromLocation: String
     @Binding var toLocation: String
     
     var body: some View {
+        HStack {
+            
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }, label: {
+                Image(systemName: "arrowshape.backward")
+                    .foregroundColor(.accentColor)
+                    .padding(.leading, 20)
+                    .bold()
+            })
+            Spacer()
+            
+            Text("CampusCompass")
+                .fontWeight(.bold)
+                .font(.system(size: 25))
+                .foregroundColor(Color.accentColor)
+            
+            Spacer()
+            
+            //This link enables us to go to the settings screen
+            NavigationLink(destination: SettingsScreen()){
+                Image(systemName:"questionmark")
+                    .padding(.trailing, 20)
+                    .bold()
+            }
+        }
+        Divider()
+            .frame(height:3)
+            .overlay(Color.black)
+            .shadow(color: Color.black, radius: 3, x:0, y: 4)
+        
         VStack(spacing: 0) {
             GeometryReader { mainView in
                 ScrollView {
@@ -34,7 +66,7 @@ struct RouteView: View {
                 .padding(.top, 25)
                 .frame(height: 400)
             }
-            
+                        
             Button {
                 Task {
                     await network.fetchRoute(building: store.selectedBuildingInternalName,
@@ -46,16 +78,30 @@ struct RouteView: View {
                 ZStack{
                     
                     RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 270, height: 100)
+                        .frame(width: 270, height: 100)
                     Text("Generate Route")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .font(.system(size: 27))
+                }
+                .padding(.bottom, 22)
+            }
+            
+            .navigationBarBackButtonHidden(true)
+            Spacer()
+            
+            NavigationLink(destination: CompletionScreen()){
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: 170, height: 70)
+                        .foregroundColor(Color.accentColor)
+                    Text("Complete Route")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .font(.system(size: 20))
                 }
             }
-            .padding(.bottom, 40)
-
-            Spacer()
+            .padding(.bottom, 20)
         }
     }
     
@@ -80,14 +126,14 @@ struct DirectionView : View {
     var body: some View {
         GeometryReader { item in
             ZStack {
-                RoundedRectangle(cornerRadius: 25)
-                    .fill(!isTapped ? .red : .gray)
+                RoundedRectangle(cornerRadius: 17)
+                    .fill(!isTapped ? .white : .gray)
                     .opacity(!isTapped ? 1 : 0.2)
                     .frame(height: 80)
                     .padding(.horizontal)
                     .shadow(radius: 5)
                 Text(direction)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .opacity(!isTapped ? 1 : 0.4)
                     .padding(.horizontal, 22)
             }
@@ -95,9 +141,7 @@ struct DirectionView : View {
                 isTapped = isTapped ? false : true
             }
         }
-        
         Spacer(minLength: 50)
-
     }
 }
 

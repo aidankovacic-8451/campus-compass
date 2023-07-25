@@ -71,6 +71,8 @@ struct BuildingSearchScreen: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color.accentColor)
                             .padding(.leading, 15)
+                            .padding(.bottom, 4)
+
                         //Spacer()
                     }
                 }
@@ -93,14 +95,14 @@ struct BuildingSearchScreen: View {
                         }
                     }
                 }
-                .position(x:200, y:450)
+                .position(x:200, y:420)
                 
                 Spacer()
                 
                 //This toggle will enable and disable accessibility mode
                 Toggle("Accessibility Mode", isOn: $store.enableAccessibilityMode)
                     .padding(.horizontal, 85)
-                    .padding (.bottom, 50)
+                    .padding (.bottom, 30)
                     .fontWeight(.bold)
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
             }
