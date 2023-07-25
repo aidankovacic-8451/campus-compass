@@ -193,6 +193,9 @@ struct LocationSelectionScreen: View {
         .onChange(of: toLocation) { _ in
             network.route = []
         }
+        .onChange(of: store.selectedBuildingInternalName) { _ in
+            network.route = []
+        }
     }
 }
 
