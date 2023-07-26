@@ -33,6 +33,8 @@ struct CompletionScreen: View {
                         .fontWeight(.bold)
                         .font(.system(size: 25))
                         .foregroundColor(Color.accentColor)
+                        .padding(.trailing)
+
                     Spacer()
                     
                     //This link enables us to go to the settings screen
