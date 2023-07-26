@@ -24,15 +24,22 @@ struct HomeScreen: View {
                 //This HStack aligns the top most part of the home screen
                 HStack {
                     
-                    Image(systemName: "house.fill")
-                        .hidden()
-                    
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Label("", systemImage: "arrowshape.backward")
+                            .foregroundColor(.accentColor)
+                            .padding(.leading, 20)
+                            .bold()
+                            .hidden()
+                    })
                     Spacer()
                     
                     Text("CampusCompass")
                         .fontWeight(.bold)
                         .font(.system(size: 25))
                         .foregroundColor(Color.accentColor)
+                        .padding(.trailing)
                     Spacer()
                     
                     //This link enables us to go to the settings screen
@@ -40,8 +47,8 @@ struct HomeScreen: View {
                         Image(systemName:"questionmark")
                             .padding(.trailing, 20)
                             .bold()
-                        }
                     }
+                }
                 
                 Divider()
                     .frame(height:3)

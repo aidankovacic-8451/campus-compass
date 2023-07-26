@@ -39,6 +39,8 @@ struct LocationSelectionScreen: View {
                         .fontWeight(.bold)
                         .font(.system(size: 25))
                         .foregroundColor(Color.accentColor)
+                        .padding(.trailing)
+
                     
                     Spacer()
                     

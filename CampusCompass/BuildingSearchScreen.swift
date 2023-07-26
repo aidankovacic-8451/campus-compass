@@ -16,7 +16,7 @@ struct BuildingSearchScreen: View {
         
         //This NavStack allows buttons on the homescreen to be functional
         NavigationStack{
-            //This VStack aligns our homescreen UI with buttons and logic
+            //This VStack aligns our buiding search screen UI with buttons and logic
             VStack{
                 
                 //This HStack aligns the top most part of the home screen
@@ -36,6 +36,8 @@ struct BuildingSearchScreen: View {
                         .fontWeight(.bold)
                         .font(.system(size: 25))
                         .foregroundColor(Color.accentColor)
+                        .padding(.trailing)
+
                     Spacer()
                     
                     //This link enables us to go to the settings screen

@@ -19,30 +19,70 @@ struct AvailableFeaturesList: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                Section(header: Text("Features")) {
-                    ForEach(network.features, id: \.self) { feature in
-                        if !(feature.contains("stair") || feature.contains("elevator")) {
-                            Button(feature) {
-                                if startingLocation {
-                                    fromLocation = feature
-                                } else {
-                                    toLocation = feature
+            //This VStack aligns ourheader with buttons and logic
+            VStack{
+                
+                //This HStack aligns the top most part of the screen
+                HStack {
+                    
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Label("", systemImage: "arrowshape.backward")
+                            .foregroundColor(.accentColor)
+                            .padding(.leading, 20)
+                            .bold()
+                    })
+                    
+                    Spacer()
+                    
+                    Text("CampusCompass")
+                        .fontWeight(.bold)
+                        .font(.system(size: 25))
+                        .foregroundColor(Color.accentColor)
+                        .padding(.trailing)
+
+                    Spacer()
+                    
+                    //This link enables us to go to the settings screen
+                    NavigationLink(destination: SettingsScreen()){
+                        Image(systemName:"questionmark")
+                            .padding(.trailing, 20)
+                            .bold()
+                    }
+                }
+                
+                Divider()
+                    .frame(height:3)
+                    .overlay(Color.black)
+                    .shadow(color: Color.black, radius: 3, x:0, y: 4)
+                List {
+                    Section(header: Text("Available Features")) {
+                        ForEach(network.features, id: \.self) { feature in
+                            if !(feature.contains("stair") || feature.contains("elevator")) {
+                                Button(feature) {
+                                    if startingLocation {
+                                        fromLocation = feature
+                                    } else {
+                                        toLocation = feature
+                                    }
+                                    dismiss()
                                 }
-                                dismiss()
+                                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                             }
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                         }
                     }
                 }
             }
-            .navigationBarTitle("Available Features")
+            .onAppear {
+                network.fetchFeatures(building: store.selectedBuildingInternalName)
+            }
         }
-        .onAppear {
-            network.fetchFeatures(building: store.selectedBuildingInternalName)
-        }
+        .navigationBarBackButtonHidden(true)
     }
 }
+
+
 
 struct AvailableFeaturesList_Previews: PreviewProvider {
     @State static var fromLocation: String = "420"
@@ -50,6 +90,8 @@ struct AvailableFeaturesList_Previews: PreviewProvider {
     static var previews: some View {
         AvailableFeaturesList(startingLocation: true, fromLocation: $fromLocation, toLocation: $toLocation)
             .environmentObject(Store())
+            .environmentObject(Network())
+
     }
 }
 
