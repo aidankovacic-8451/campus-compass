@@ -184,6 +184,11 @@ class Network: ObservableObject {
         }.resume()
     }
     
+    func clearFeatureCache() {
+        self.features = []
+    }
+    
+    // Error reporting functions
     private func reportNoConnect() {
         DispatchQueue.main.async {
             self.loadError = .unableToConnect

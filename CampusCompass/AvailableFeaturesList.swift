@@ -77,7 +77,9 @@ struct AvailableFeaturesList: View {
                 }
             }
             .task {
-                await network.fetchFeatures(building: store.selectedBuildingInternalName)
+                if network.features.isEmpty {
+                    await network.fetchFeatures(building: store.selectedBuildingInternalName)
+                }
             }
         }
         .navigationBarBackButtonHidden(true)
