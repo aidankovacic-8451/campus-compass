@@ -13,9 +13,11 @@ struct AvailableFeaturesList: View {
     @Binding var toLocation: String
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var store: Store
     @EnvironmentObject var network: Network
+    
+    @State var errorState: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -79,6 +81,29 @@ struct AvailableFeaturesList: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onChange(of: network.loadError) { newValue in
+            self.errorState = newValue != nil
+        }
+        // Error handling
+        .alert("Error", isPresented: $errorState, presenting: network.loadError) { error in
+            Button {
+                Task {
+                    await network.fetchFeatures(building: store.selectedBuildingInternalName)
+                    // Set it to nil so that this will reappear if the error happens again
+                    network.loadError = nil
+                }
+            } label: {
+                Text("Try Again")
+            }
+            Button {
+                network.loadError = nil
+                dismiss()
+            } label: {
+                Text("OK")
+            }
+        } message: { error in
+            Text(error.description)
+        }
     }
 }
 
