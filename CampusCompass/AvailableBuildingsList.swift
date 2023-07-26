@@ -67,8 +67,8 @@ struct AvailableBuildingsList: View {
                         }
                     }
                 }
-                .onAppear {
-                    network.fetchBuildings(campus: store.selectedSchoolInternalName)
+                .task {
+                    await network.fetchBuildings(campus: store.selectedSchoolInternalName)
                 }
             }
         }

@@ -68,8 +68,8 @@ struct AvailableSchoolsList: View {
                             }
                         }
                     }
-                    .onAppear {
-                        network.fetchCampuses()
+                    .task {
+                        await network.fetchCampuses()
                     }
                 }
             }

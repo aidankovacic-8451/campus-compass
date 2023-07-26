@@ -66,7 +66,7 @@ class Network: ObservableObject {
         }.resume()
     }
     
-    func fetchFeatures(building: String) {
+    func fetchFeatures(building: String) async {
         guard let url = URL(string: "http://\(IP):8000/features/\(building)")
         else {
             return
@@ -106,7 +106,7 @@ class Network: ObservableObject {
         }.resume()
     }
     
-    func fetchBuildings(campus: String) {
+    func fetchBuildings(campus: String) async {
         guard let url = URL(string: "http://\(IP):8000/buildings/\(campus)")
         else {
             return
@@ -145,7 +145,7 @@ class Network: ObservableObject {
         }.resume()
     }
     
-    func fetchCampuses() {
+    func fetchCampuses() async {
         guard let url = URL(string: "http://\(IP):8000/campus")
         else {
             return

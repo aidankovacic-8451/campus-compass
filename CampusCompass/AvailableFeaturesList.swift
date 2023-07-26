@@ -74,8 +74,8 @@ struct AvailableFeaturesList: View {
                     }
                 }
             }
-            .onAppear {
-                network.fetchFeatures(building: store.selectedBuildingInternalName)
+            .task {
+                await network.fetchFeatures(building: store.selectedBuildingInternalName)
             }
         }
         .navigationBarBackButtonHidden(true)
