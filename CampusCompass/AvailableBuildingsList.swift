@@ -72,7 +72,6 @@ struct AvailableBuildingsList: View {
                 }
                 .task {
                     await network.fetchBuildings(campus: store.selectedSchoolInternalName)
-                    network.clearFeatureCache()
                 }
             }
         }

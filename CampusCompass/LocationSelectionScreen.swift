@@ -191,6 +191,7 @@ struct LocationSelectionScreen: View {
         }
         .onChange(of: store.selectedBuildingInternalName) { _ in
             network.route = []
+            network.clearFeatureCache()
         }
     }
 }
