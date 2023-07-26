@@ -168,16 +168,8 @@ struct LocationSelectionScreen: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: RouteView(fromLocation: $fromLocation, toLocation: $toLocation)){
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 7)
-                            .frame(width: 190.0, height: 70)
-                            .foregroundColor(.accentColor)
-                        Text("Get Your Route")
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                    }
-                }
+                // Only allows route navigation button to be pressed if both starting and ending location are selected.
+                RouteButtonView(fromLocation: $fromLocation, toLocation: $toLocation, ready: (fromLocation != "" && toLocation != ""))
                 
                 Spacer()
                 
@@ -199,6 +191,37 @@ struct LocationSelectionScreen: View {
         }
         .onChange(of: store.selectedBuildingInternalName) { _ in
             network.route = []
+        }
+    }
+}
+
+struct RouteButtonView: View {
+    @Binding var fromLocation: String
+    @Binding var toLocation: String
+    let ready: Bool
+    
+    var body: some View {
+        // Only allows navigation to route page when ready
+        if ready {
+            NavigationLink(destination: RouteView(fromLocation: $fromLocation, toLocation: $toLocation)){
+                ZStack{
+                    RoundedRectangle(cornerRadius: 7)
+                        .frame(width: 190.0, height: 70)
+                        .foregroundColor(.accentColor)
+                    Text("Get Your Route")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                }
+            }
+        } else {
+            ZStack{
+                RoundedRectangle(cornerRadius: 7)
+                    .frame(width: 190.0, height: 70)
+                    .foregroundColor(.gray)
+                Text("Get Your Route")
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            }
         }
     }
 }
