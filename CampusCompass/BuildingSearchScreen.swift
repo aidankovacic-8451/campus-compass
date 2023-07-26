@@ -11,6 +11,7 @@ struct BuildingSearchScreen: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var store: Store
+    @EnvironmentObject var network: Network
     
     var body: some View {
         
@@ -110,6 +111,9 @@ struct BuildingSearchScreen: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onChange(of: store.selectedSchoolInternalName) { _ in
+            network.clearBuildingCache()
+        }
     }
 }
 

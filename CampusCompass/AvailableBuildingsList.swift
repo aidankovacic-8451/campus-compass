@@ -71,7 +71,9 @@ struct AvailableBuildingsList: View {
                     }
                 }
                 .task {
-                    await network.fetchBuildings(campus: store.selectedSchoolInternalName)
+                    if network.buildings.isEmpty {
+                        await network.fetchBuildings(campus: store.selectedSchoolInternalName)
+                    }
                 }
             }
         }

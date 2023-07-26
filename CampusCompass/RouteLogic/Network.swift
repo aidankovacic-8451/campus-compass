@@ -188,6 +188,10 @@ class Network: ObservableObject {
         self.features = []
     }
     
+    func clearBuildingCache() {
+        self.buildings = []
+    }
+    
     // Error reporting functions
     private func reportNoConnect() {
         DispatchQueue.main.async {

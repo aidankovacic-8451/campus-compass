@@ -72,7 +72,9 @@ struct AvailableSchoolsList: View {
                         }
                     }
                     .task {
-                        await network.fetchCampuses()
+                        if network.schools.isEmpty {
+                            await network.fetchCampuses()
+                        }
                     }
                 }
             }
