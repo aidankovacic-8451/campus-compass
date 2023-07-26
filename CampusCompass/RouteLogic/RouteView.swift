@@ -64,28 +64,9 @@ struct RouteView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 25)
-                .frame(height: 400)
+                .padding(.bottom, 25)
             }
                         
-            Button {
-                Task {
-                    await network.fetchRoute(building: store.selectedBuildingInternalName,
-                                             fromLocation: self.fromLocation,
-                                             toLocation: self.toLocation,
-                                             accessibility: store.enableAccessibilityMode)
-                }
-            } label: {
-                ZStack{
-                    
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 270, height: 100)
-                    Text("Generate Route")
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .font(.system(size: 27))
-                }
-                .padding(.bottom, 22)
-            }
             
             .navigationBarBackButtonHidden(true)
             Spacer()
@@ -102,6 +83,12 @@ struct RouteView: View {
                 }
             }
             .padding(.bottom, 20)
+        }
+        .task {
+            await network.fetchRoute(building: store.selectedBuildingInternalName,
+                                     fromLocation: self.fromLocation,
+                                     toLocation: self.toLocation,
+                                     accessibility: store.enableAccessibilityMode)
         }
     }
     
