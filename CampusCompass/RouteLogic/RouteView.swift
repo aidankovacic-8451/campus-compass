@@ -67,7 +67,7 @@ struct RouteView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 25)
-                .frame(height: 400)
+                .padding(.bottom, 25)
             }
             
             .navigationBarBackButtonHidden(true)
