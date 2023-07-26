@@ -9,10 +9,13 @@ import SwiftUI
 
 struct RouteView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var network: Network
     @EnvironmentObject var store: Store
     @Binding var fromLocation: String
     @Binding var toLocation: String
+    
+    @State var errorState: Bool = false
     
     var body: some View {
         HStack {
@@ -66,26 +69,6 @@ struct RouteView: View {
                 .padding(.top, 25)
                 .frame(height: 400)
             }
-                        
-            Button {
-                Task {
-                    await network.fetchRoute(building: store.selectedBuildingInternalName,
-                                             fromLocation: self.fromLocation,
-                                             toLocation: self.toLocation,
-                                             accessibility: store.enableAccessibilityMode)
-                }
-            } label: {
-                ZStack{
-                    
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 270, height: 100)
-                    Text("Generate Route")
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .font(.system(size: 27))
-                }
-                .padding(.bottom, 22)
-            }
             
             .navigationBarBackButtonHidden(true)
             Spacer()
@@ -102,6 +85,38 @@ struct RouteView: View {
                 }
             }
             .padding(.bottom, 20)
+        }
+        .task {
+            await network.fetchRoute(building: store.selectedBuildingInternalName,
+                                     fromLocation: self.fromLocation,
+                                     toLocation: self.toLocation,
+                                     accessibility: store.enableAccessibilityMode)
+        }
+        .onChange(of: network.loadError) { newValue in
+            self.errorState = newValue != nil
+        }
+        // Error handling
+        .alert("Error", isPresented: $errorState, presenting: network.loadError) { error in
+            Button {
+                Task {
+                    await network.fetchRoute(building: store.selectedBuildingInternalName,
+                                             fromLocation: self.fromLocation,
+                                             toLocation: self.toLocation,
+                                             accessibility: store.enableAccessibilityMode)
+                    // Set it to nil so that this will reappear if the error happens again
+                    network.loadError = nil
+                }
+            } label: {
+                Text("Try Again")
+            }
+            Button {
+                network.loadError = nil
+                dismiss()
+            } label: {
+                Text("OK")
+            }
+        } message: { error in
+            Text(error.description)
         }
     }
     
