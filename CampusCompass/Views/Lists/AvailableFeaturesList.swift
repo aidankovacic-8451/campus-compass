@@ -9,13 +9,13 @@ import SwiftUI
 
 struct AvailableFeaturesList: View {
     var startingLocation: Bool
-    @Binding var fromLocation: String
-    @Binding var toLocation: String
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var store: Store
     @EnvironmentObject var network: Network
+    @Binding var fromLocation: Feature
+    @Binding var toLocation: Feature
     
     @State var errorState: Bool = false
     
@@ -61,8 +61,8 @@ struct AvailableFeaturesList: View {
                 List {
                     Section(header: Text("Available Features")) {
                         ForEach(network.features, id: \.self) { feature in
-                            if !(feature.contains("stair") || feature.contains("elevator")) {
-                                Button(feature) {
+                            if feature.type != .stairs && feature.type != .elevator && feature.type != .null {
+                                Button(feature.getFriendlyName()) {
                                     if startingLocation {
                                         fromLocation = feature
                                     } else {
@@ -112,16 +112,12 @@ struct AvailableFeaturesList: View {
 
 
 struct AvailableFeaturesList_Previews: PreviewProvider {
-    @State static var fromLocation: String = "420"
-    @State static var toLocation: String = "1337"
+    @State static var fromLocation: Feature = Feature(name: "420", type: .bathroom)
+    @State static var toLocation: Feature = Feature(name: "1337", type: .classroom)
     static var previews: some View {
         AvailableFeaturesList(startingLocation: true, fromLocation: $fromLocation, toLocation: $toLocation)
             .environmentObject(Store())
             .environmentObject(Network())
 
     }
-}
-
-struct Feature: Hashable {
-    let name: String
 }

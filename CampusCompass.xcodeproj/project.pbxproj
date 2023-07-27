@@ -118,13 +118,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DD12177D2A69B5CA0043D5FB /* RouteLogic */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RouteLogic;
-			sourceTree = "<group>";
-		};
 		DD1B4F732A720B3700800DCE /* Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +186,6 @@
 			children = (
 				DD1B4F742A720B3D00800DCE /* Views */,
 				DD1B4F732A720B3700800DCE /* Logic */,
-				DD12177D2A69B5CA0043D5FB /* RouteLogic */,
 				8B7443FF2A50CB4F00373A9C /* Info.plist */,
 				DD448E6D2A4A8DEF005A9AF6 /* CampusCompassApp.swift */,
 				DD448E712A4A8DF0005A9AF6 /* Assets.xcassets */,
