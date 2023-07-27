@@ -9,8 +9,11 @@ import SwiftUI
 
 struct AvailableSchoolsList: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var store: Store
     @EnvironmentObject var network: Network
+    
+    @State var errorState: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -68,13 +71,38 @@ struct AvailableSchoolsList: View {
                             }
                         }
                     }
-                    .onAppear {
-                        network.fetchCampuses()
+                    .task {
+                        if network.schools.isEmpty {
+                            await network.fetchCampuses()
+                        }
                     }
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onChange(of: network.loadError) { newValue in
+            self.errorState = newValue != nil
+        }
+        // Error handling
+        .alert("Error", isPresented: $errorState, presenting: network.loadError) { error in
+            Button {
+                Task {
+                    await network.fetchCampuses()
+                    // Set it to nil so that this will reappear if the error happens again
+                    network.loadError = nil
+                }
+            } label: {
+                Text("Try Again")
+            }
+            Button {
+                network.loadError = nil
+                dismiss()
+            } label: {
+                Text("OK")
+            }
+        } message: { error in
+            Text(error.description)
+        }
     }
 }
 

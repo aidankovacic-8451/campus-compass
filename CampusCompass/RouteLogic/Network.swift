@@ -14,6 +14,8 @@ class Network: ObservableObject {
     @Published var buildings: Array<Building> = []
     @Published var schools: Array<School> = []
     
+    @Published var loadError: LoadError? = nil
+    
     // IP Address of services to connect to
     private let IP: String = "192.168.1.83"
     
@@ -39,6 +41,7 @@ class Network: ObservableObject {
             (data, response, error) in
             if let error = error {
                 print(error)
+                self.reportNoConnect()
                 return
             }
             
@@ -49,6 +52,7 @@ class Network: ObservableObject {
                     return
                 }
                 DispatchQueue.main.async {
+                    self.loadError = nil
                     let substringRoute = String(decoding: data, as: UTF8.self)
                     let substringArray = substringRoute.split(whereSeparator: \.isNewline)
                     self.route = substringArray.map { (Substring) -> String in
@@ -56,11 +60,13 @@ class Network: ObservableObject {
                     }
                 }
                 
+            } else {
+                self.reportError(errorCode: response.statusCode)
             }
         }.resume()
     }
     
-    func fetchFeatures(building: String) {
+    func fetchFeatures(building: String) async {
         guard let url = URL(string: "http://\(IP):8000/features/\(building)")
         else {
             return
@@ -72,6 +78,7 @@ class Network: ObservableObject {
             (data, response, error) in
             if let error = error {
                 print(error)
+                self.reportNoConnect()
                 return
             }
             
@@ -82,6 +89,7 @@ class Network: ObservableObject {
                     return
                 }
                 DispatchQueue.main.async {
+                    self.loadError = nil
                     do {
                         let decodedFeatures = try JSONDecoder().decode([FeatureMessage].self, from: data)
                         self.features = decodedFeatures.map {
@@ -92,11 +100,13 @@ class Network: ObservableObject {
                     }
                 }
                 
+            } else {
+                self.reportError(errorCode: response.statusCode)
             }
         }.resume()
     }
     
-    func fetchBuildings(campus: String) {
+    func fetchBuildings(campus: String) async {
         guard let url = URL(string: "http://\(IP):8000/buildings/\(campus)")
         else {
             return
@@ -108,6 +118,7 @@ class Network: ObservableObject {
             (data, response, error) in
             if let error = error {
                 print(error)
+                self.reportNoConnect()
                 return
             }
             
@@ -128,11 +139,13 @@ class Network: ObservableObject {
                     }
                 }
                 
+            } else {
+                self.reportError(errorCode: response.statusCode)
             }
         }.resume()
     }
     
-    func fetchCampuses() {
+    func fetchCampuses() async {
         guard let url = URL(string: "http://\(IP):8000/campus")
         else {
             return
@@ -144,6 +157,7 @@ class Network: ObservableObject {
             (data, response, error) in
             if let error = error {
                 print(error)
+                self.reportNoConnect()
                 return
             }
             
@@ -164,8 +178,38 @@ class Network: ObservableObject {
                     }
                 }
                 
+            } else {
+                self.reportError(errorCode: response.statusCode)
             }
         }.resume()
+    }
+    
+    func clearFeatureCache() {
+        self.features = []
+    }
+    
+    func clearBuildingCache() {
+        self.buildings = []
+    }
+    
+    // Error reporting functions
+    private func reportNoConnect() {
+        DispatchQueue.main.async {
+            self.loadError = .unableToConnect
+        }
+    }
+    
+    private func reportError(errorCode: Int) {
+        DispatchQueue.main.async {
+            switch errorCode {
+            case 500:
+                self.loadError = .internalServerError
+            case 404:
+                self.loadError = .notFoundError
+            default:
+                self.loadError = .unknownError
+            }
+        }
     }
 
     struct RouteMessage: Codable {
@@ -194,4 +238,23 @@ class Network: ObservableObject {
         let internal_name: String
     }
 
+}
+
+enum LoadError {
+    case internalServerError
+    case unableToConnect
+    case notFoundError
+    case unknownError
+    var description: String {
+        switch self {
+        case .internalServerError:
+            return "Sorry, there was an error on our end 😨"
+        case .unableToConnect:
+            return "It appears you lack a connection or our servers are down.\n Please try again later."
+        case .notFoundError:
+            return "It appears that we can't find an entry in our server for your request.\n Please report this to the CampusCompass Team."
+        case .unknownError:
+            return "Unknown error. Please report to the CampusCompass Team."
+        }
+    }
 }

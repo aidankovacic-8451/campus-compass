@@ -9,10 +9,13 @@ import SwiftUI
 
 struct RouteView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var network: Network
     @EnvironmentObject var store: Store
     @Binding var fromLocation: String
     @Binding var toLocation: String
+    
+    @State var errorState: Bool = false
     
     var body: some View {
         HStack {
@@ -66,7 +69,6 @@ struct RouteView: View {
                 .padding(.top, 25)
                 .padding(.bottom, 25)
             }
-                        
             
             .navigationBarBackButtonHidden(true)
             Spacer()
@@ -89,6 +91,32 @@ struct RouteView: View {
                                      fromLocation: self.fromLocation,
                                      toLocation: self.toLocation,
                                      accessibility: store.enableAccessibilityMode)
+        }
+        .onChange(of: network.loadError) { newValue in
+            self.errorState = newValue != nil
+        }
+        // Error handling
+        .alert("Error", isPresented: $errorState, presenting: network.loadError) { error in
+            Button {
+                Task {
+                    await network.fetchRoute(building: store.selectedBuildingInternalName,
+                                             fromLocation: self.fromLocation,
+                                             toLocation: self.toLocation,
+                                             accessibility: store.enableAccessibilityMode)
+                    // Set it to nil so that this will reappear if the error happens again
+                    network.loadError = nil
+                }
+            } label: {
+                Text("Try Again")
+            }
+            Button {
+                network.loadError = nil
+                dismiss()
+            } label: {
+                Text("OK")
+            }
+        } message: { error in
+            Text(error.description)
         }
     }
     
