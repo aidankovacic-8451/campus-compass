@@ -10,14 +10,14 @@ import SwiftUI
 
 class Network: ObservableObject {
     @Published var route: Array<String> = []
-    @Published var features: Array<String> = []
+    @Published var features: Array<Feature> = []
     @Published var buildings: Array<Building> = []
     @Published var schools: Array<School> = []
     
     @Published var loadError: LoadError? = nil
     
     // IP Address of services to connect to
-    private let IP: String = "192.168.1.83"
+    private let IP: String = "some IP that you can't see"
     
     func fetchRoute(building: String, fromLocation: String, toLocation: String, accessibility: Bool) async {
         let jsonEncoder = JSONEncoder()

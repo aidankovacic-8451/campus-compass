@@ -35,7 +35,7 @@ struct SettingsScreen: View {
                         .font(.system(size: 25))
                         .foregroundColor(Color.accentColor)
                         .padding(.trailing)
-
+                    
                     Spacer()
                     
                     //This link enables us to go to the settings screen
@@ -43,17 +43,43 @@ struct SettingsScreen: View {
                         Image(systemName:"house.fill")
                             .padding(.trailing, 20)
                             .bold()
-                        }
                     }
+                }
                 
                 Divider()
                     .frame(height:3)
                     .overlay(Color.black)
                     .shadow(color: Color.black, radius: 3, x:0, y: 4)
-               
+                
                 Spacer()
                 
                 VStack{
+                    Link(destination: URL(string: "https://www.youtube.com/watch?v=YUCaw8GMZ44")!){
+                        HStack{
+                            Image(systemName: "play.rectangle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 20)
+                            Text("User Tutorial")
+                                .font(.system(size:20))
+                                .bold()
+                            
+                        }
+                        .padding(.bottom, 20)
+                    }
+                    
+                    Link(destination: URL(string: "https://github.com/aid-kov/campus-compass/wiki/Campus-Administrator-Walk-Through")!){
+                        HStack{
+                            Image(systemName: "person.badge.key.fill")
+                                .resizable()
+                                .frame(width: 26, height: 20)
+                            Text("Administrator Basics")
+                                .font(.system(size:20))
+                                .bold()
+                            
+                        }
+                        .padding(.bottom, 130)
+                    }
+                    
                     Text("Version:")
                         .font(.system(size:20))
                         .bold()
