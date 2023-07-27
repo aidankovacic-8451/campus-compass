@@ -17,7 +17,7 @@ class Network: ObservableObject {
     @Published var loadError: LoadError? = nil
     
     // IP Address of services to connect to
-    private let IP: String = "192.168.1.83"
+    private let IP: String = "72.49.127.26"
     
     func fetchRoute(building: String, fromLocation: String, toLocation: String, accessibility: Bool) async {
         let jsonEncoder = JSONEncoder()
