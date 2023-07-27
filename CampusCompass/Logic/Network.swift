@@ -10,7 +10,7 @@ import SwiftUI
 
 class Network: ObservableObject {
     @Published var route: Array<String> = []
-    @Published var features: Array<String> = []
+    @Published var features: Array<Feature> = []
     @Published var buildings: Array<Building> = []
     @Published var schools: Array<School> = []
     
