@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct LocationSelectionScreen: View {
-    @State private var fromLocation: String = ""
-    @State private var toLocation: String = ""
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var store: Store
     @EnvironmentObject var network: Network
+    @State private var fromLocation: Feature = Feature()
+    @State private var toLocation: Feature = Feature()
     
     var body: some View {
         
@@ -111,7 +111,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(self.fromLocation)")
+                        Text(" \(fromLocation.getFriendlyName())")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -131,7 +131,7 @@ struct LocationSelectionScreen: View {
                         Spacer()
                     }
                     HStack{
-                        Text(" \(self.toLocation)")
+                        Text(" \(toLocation.getFriendlyName())")
                             .font(.system(size: 30))
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -169,7 +169,7 @@ struct LocationSelectionScreen: View {
                 Spacer()
                 
                 // Only allows route navigation button to be pressed if both starting and ending location are selected.
-                RouteButtonView(fromLocation: $fromLocation, toLocation: $toLocation, ready: (fromLocation != "" && toLocation != ""))
+                RouteButtonView(fromLocation: $fromLocation, toLocation: $toLocation, ready: (fromLocation.type != .null && toLocation.type != .null))
                 
                 Spacer()
                 
@@ -197,8 +197,8 @@ struct LocationSelectionScreen: View {
 }
 
 struct RouteButtonView: View {
-    @Binding var fromLocation: String
-    @Binding var toLocation: String
+    @Binding var fromLocation: Feature
+    @Binding var toLocation: Feature
     let ready: Bool
     
     var body: some View {

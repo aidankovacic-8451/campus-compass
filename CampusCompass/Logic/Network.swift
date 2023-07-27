@@ -93,8 +93,15 @@ class Network: ObservableObject {
                     do {
                         let decodedFeatures = try JSONDecoder().decode([FeatureMessage].self, from: data)
                         self.features = decodedFeatures.map {
-                            $0.name
+                            let featureType = FeatureType(rawValue: $0.type)
+                            if let type = featureType {
+                                return Feature(name: $0.name, type: type)
+                            } else {
+                                return Feature()
+                            }
                         }
+                        self.features = self.features.sorted { $0.name < $1.name }
+                            
                     } catch let error {
                         print("Error decoding: ", error)
                     }

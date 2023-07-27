@@ -12,8 +12,8 @@ struct RouteView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var network: Network
     @EnvironmentObject var store: Store
-    @Binding var fromLocation: String
-    @Binding var toLocation: String
+    @Binding var fromLocation: Feature
+    @Binding var toLocation: Feature
     
     @State var errorState: Bool = false
     
@@ -88,8 +88,8 @@ struct RouteView: View {
         }
         .task {
             await network.fetchRoute(building: store.selectedBuildingInternalName,
-                                     fromLocation: self.fromLocation,
-                                     toLocation: self.toLocation,
+                                     fromLocation: self.fromLocation.name,
+                                     toLocation: self.toLocation.name,
                                      accessibility: store.enableAccessibilityMode)
         }
         .onChange(of: network.loadError) { newValue in
@@ -100,8 +100,8 @@ struct RouteView: View {
             Button {
                 Task {
                     await network.fetchRoute(building: store.selectedBuildingInternalName,
-                                             fromLocation: self.fromLocation,
-                                             toLocation: self.toLocation,
+                                             fromLocation: self.fromLocation.name,
+                                             toLocation: self.toLocation.name,
                                              accessibility: store.enableAccessibilityMode)
                     // Set it to nil so that this will reappear if the error happens again
                     network.loadError = nil
@@ -162,8 +162,8 @@ struct DirectionView : View {
 
 
 struct RouteView_Previews: PreviewProvider {
-    @State static var fromLocation: String = "101"
-    @State static var toLocation: String = "303"
+    @State static var fromLocation: Feature = Feature(name: "303", type: .classroom)
+    @State static var toLocation: Feature = Feature(name: "420", type: .bathroom)
     static var previews: some View {
         RouteView(fromLocation: $fromLocation, toLocation: $toLocation)
             .environmentObject(Network())
